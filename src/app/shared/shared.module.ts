@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 //PrimeNg modules
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
-  declarations: [],
   imports: [CommonModule, ButtonModule],
-  exports: [ButtonModule],
+  exports: [ButtonModule, InputTextModule],
 })
 export class SharedModule {}
