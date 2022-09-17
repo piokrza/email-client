@@ -2,47 +2,22 @@
   <div class="px-4 py-3">
     <h1>Create an Account</h1>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-5">
-      <span class="p-float-label py-1 my-4">
-        <input
-          id="float-input"
-          type="text"
-          pInputText
-          formControlName="username"
-        />
-        <label for="float-input">Username</label>
-      </span>
-
-      {{ signupForm.get("username")?.errors | json }}
-
-      <span class="p-float-label py-1 my-4">
-        <input
-          id="float-input"
-          type="text"
-          pInputText
-          formControlName="password"
-        />
-        <label for="float-input">Password</label>
-      </span>
-
-      {{ signupForm.get("password")?.errors | json }}
-
-      <span class="p-float-label py-1 my-4">
-        <input
-          id="float-input"
-          type="text"
-          placeholder="Password confirmation"
-          pInputText
-          formControlName="passwordConfirmation"
-        />
-        <label for="float-input">Password confirmation</label>
-      </span>
-
-      {{ signupForm.get("passwordConfirmation")?.errors | json }}
-
-      {{ signupForm.errors | json }}
-
+      <ng-container *ngIf="signupForm.get('username') as username">
+        <app-form-input [control]="$any(username)" label="Username"></app-form-input>
+      </ng-container>
+      <ng-container *ngIf="signupForm.get('password') as password">
+        <app-form-input [control]="$any(password)" label="Password"></app-form-input>
+      </ng-container>
+      <ng-container
+        *ngIf="signupForm.get('passwordConfirmation') as passwordConfirmation"
+      >
+        <app-form-input
+          label="Password confirmation"
+          [control]="$any(passwordConfirmation)"
+        ></app-form-input>
+      </ng-container>
       <div class="my-5">
-        <p-button (onClick)="onSubmit()" label="Signup"></p-button>
+        <p-button (onClick)="onSubmit()" label="Sign up!"></p-button>
       </div>
     </form>
   </div>

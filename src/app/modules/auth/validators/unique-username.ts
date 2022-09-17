@@ -1,32 +1,28 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AsyncValidator, FormControl, ValidationErrors } from '@angular/forms';
 import { map, Observable, catchError, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AuthService } from '@auth/services/auth.service';
+import { AvailableUsernameResponse } from '@auth/models/available-username-response.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UniqueUsername implements AsyncValidator {
-  constructor(private http: HttpClient) {}
+  constructor(private authService: AuthService) {}
 
   validate = (
     control: FormControl
   ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-    return this.http
-      .post<any>(`${environment.BASE_URL}/auth/username`, {
-        username: control.value,
+    return this.authService.usernameAvailable(control).pipe(
+      // if username is available map response to null
+      map((res: AvailableUsernameResponse) => null),
+      catchError((err): Observable<ValidationErrors> => {
+        if (err.error.username) {
+          return of({ nonUniqueUsername: true });
+        } else {
+          return of({ noConnection: true });
+        }
       })
-      .pipe(
-        // if username is available map response to null
-        map(() => null),
-        catchError((err) => {
-          if (err.error.username) {
-            return of({ nonUniqueUsername: true });
-          } else {
-            return of({ noConnection: true });
-          }
-        })
-      );
+    );
   };
 }
