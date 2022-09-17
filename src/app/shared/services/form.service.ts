@@ -13,10 +13,14 @@ export abstract class FormService {
 
   protected constructor(protected formBuilder: FormBuilder) {}
 
+  protected get customValidators(): any {
+    return {};
+  }
+
   abstract get config(): any;
 
   buildForm(): void {
-    this._form = this.formBuilder.group(this.config);
+    this._form = this.formBuilder.group(this.config, this.customValidators);
     this._form$?.next(this._form);
   }
 

@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatchPassword } from '@shared/validators/match-password/match-password';
 import { FormService } from '@shared/services/form.service';
 
 @Injectable()
 export class SignupFormService extends FormService {
-  constructor(protected override formBuilder: FormBuilder) {
+  constructor(
+    protected override formBuilder: FormBuilder,
+    private matchPassword: MatchPassword
+  ) {
     super(formBuilder);
   }
 
@@ -25,6 +29,7 @@ export class SignupFormService extends FormService {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(20),
+          this.matchPassword.validate,
         ],
       ],
       passwordConfirmation: [
@@ -33,8 +38,13 @@ export class SignupFormService extends FormService {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(20),
+          this.matchPassword.validate,
         ],
       ],
     };
+  }
+
+  override get customValidators(): any {
+    return { validators: [this.matchPassword.validate] };
   }
 }

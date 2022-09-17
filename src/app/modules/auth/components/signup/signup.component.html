@@ -23,6 +23,9 @@
         />
         <label for="float-input">Password</label>
       </span>
+
+      {{ signupForm.get("password")?.errors | json }}
+
       <span class="p-float-label py-1 my-4">
         <input
           id="float-input"
@@ -33,6 +36,11 @@
         />
         <label for="float-input">Password confirmation</label>
       </span>
+
+      {{ signupForm.get("passwordConfirmation")?.errors | json }}
+
+      {{ signupForm.errors | json }}
+
       <div class="my-5">
         <p-button (onClick)="onSubmit()" label="Signup"></p-button>
       </div>
