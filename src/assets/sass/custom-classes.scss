@@ -1,7 +1,7 @@
 @use 'abstracts' as *;
 
 @each $resolution, $i in $resolutions {
-  .container-max-width-#{$resolution} {
+  .container-max-w-#{$resolution} {
     max-width: #{$i};
     margin: 0 auto !important;
   }

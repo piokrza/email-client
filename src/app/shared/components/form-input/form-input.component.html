@@ -1,5 +1,11 @@
 <span class="p-float-label py-1 mt-4 mb-2">
-  <input [formControl]="control" id="username" [type]="inputType" pInputText />
+  <input
+    [formControl]="control"
+    [type]="inputType"
+    id="username"
+    class="w-full"
+    pInputText
+  />
   <label for="username">{{ label }}</label>
 </span>
 <ul *ngIf="control.touched && control.dirty" class="text-pink-500 text-sm mb-4">
