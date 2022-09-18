@@ -2,7 +2,7 @@
   <div class="px-4 py-3">
     <h1>Create an Account</h1>
 
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-5">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-6">
       <app-form-input
         *ngIf="username"
         [control]="$any(username)"

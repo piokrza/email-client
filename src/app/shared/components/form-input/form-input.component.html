@@ -2,7 +2,7 @@
   <input [formControl]="control" id="username" [type]="inputType" pInputText />
   <label for="username">{{ label }}</label>
 </span>
-<ul *ngIf="control.touched && control.dirty" class="text-pink-500 text-sm">
+<ul *ngIf="control.touched && control.dirty" class="text-pink-500 text-sm mb-4">
   <li *ngIf="control.errors?.['required']">Value is required</li>
   <li *ngIf="control.errors?.['minlength']">
     Value you entered is
