@@ -34,7 +34,10 @@
               "./node_modules/primeng/resources/primeng.css",
               "./node_modules/primeng/resources/themes/tailwind-light/theme.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/sass"]
+            }
           },
           "configurations": {
             "production": {

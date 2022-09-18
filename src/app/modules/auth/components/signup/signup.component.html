@@ -1,38 +1,54 @@
-<div class="px-4 py-3">
-  <h1>Signup</h1>
+<ng-container *ngIf="signupForm; else loading">
+  <div class="container-max-w-sm">
+    <div class="px-4 py-3 mt-5">
+      <h1>Create an Account</h1>
 
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-5">
-    <span class="p-float-label py-1 my-4">
-      <input
-        id="float-input"
-        type="text"
-        pInputText
-        formControlName="username"
-      />
-      <label for="float-input">Username</label>
-    </span>
-    <span class="p-float-label py-1 my-4">
-      <input
-        id="float-input"
-        type="text"
-        pInputText
-        formControlName="password"
-      />
-      <label for="float-input">Password</label>
-    </span>
-    <span class="p-float-label py-1 my-4">
-      <input
-        id="float-input"
-        type="text"
-        placeholder="Password confirmation"
-        pInputText
-        formControlName="passwordConfirmation"
-      />
-      <label for="float-input">Password confirmation</label>
-    </span>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-6">
+        <app-form-input
+          *ngIf="username"
+          [control]="$any(username)"
+          label="Username"
+        ></app-form-input>
 
-    <div class="my-5">
-      <p-button (onClick)="onSubmit()" label="Signup"></p-button>
+        <app-form-input
+          *ngIf="password"
+          [control]="$any(password)"
+          inputType="password"
+          label="Password"
+        ></app-form-input>
+
+        <app-form-input
+          *ngIf="passwordConfirmation"
+          label="Password confirmation"
+          [control]="$any(passwordConfirmation)"
+          inputType="password"
+        ></app-form-input>
+
+        <ng-container
+          *ngIf="password?.touched && passwordConfirmation?.touched"
+        >
+          <div
+            *ngIf="signupForm.errors?.['passwordsDontMatch']"
+            class="text-pink-500 text-sm"
+          >
+            Password and Password Confirmation must match
+          </div>
+        </ng-container>
+
+        <div class="my-5">
+          <p-button
+            (onClick)="onSubmit()"
+            styleClass="w-full"
+            label="Sign up!"
+          ></p-button>
+        </div>
+      </form>
     </div>
-  </form>
-</div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="mx-auto">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>
