@@ -38,7 +38,9 @@ export class SignupComponent extends DestroyComponent implements OnInit {
       error: (err) => {
         if (!err.status) {
           this.signupForm.setErrors({ noConnection: true });
-        } else this.signupForm.setErrors({ unknownError: true });
+        } else {
+          this.signupForm.setErrors({ unknownError: true });
+        }
       },
     });
   }
