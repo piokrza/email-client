@@ -3,6 +3,8 @@ import { SignupFormService } from '@auth/services/signup-form.service';
 import { takeUntil } from 'rxjs';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { AuthService } from '@auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +14,11 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
 export class SignupComponent extends DestroyComponent implements OnInit {
   signupForm!: FormGroup;
 
-  constructor(private signupFormService: SignupFormService) {
+  constructor(
+    private signupFormService: SignupFormService,
+    private authService: AuthService,
+    private router: Router
+  ) {
     super();
   }
 
@@ -25,7 +31,16 @@ export class SignupComponent extends DestroyComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.signupForm.value);
+    if (this.signupForm.invalid) return;
+
+    this.authService.signup(this.signupForm.value).subscribe({
+      next: () => {},
+      error: (err) => {
+        if (!err.status) {
+          this.signupForm.setErrors({ noConnection: true });
+        } else this.signupForm.setErrors({ unknownError: true });
+      },
+    });
   }
 
   get username(): AbstractControl | null {

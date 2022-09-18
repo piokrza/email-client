@@ -9,5 +9,6 @@ import { FormControl } from '@angular/forms';
 export class FormInputComponent {
   @Input() label!: string;
   @Input() control!: FormControl;
+  @Input() id!: string;
   @Input() inputType: string = 'text';
 }
