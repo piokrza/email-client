@@ -1,27 +1,44 @@
 <ng-container *ngIf="signupForm; else loading">
   <div class="px-4 py-3">
     <h1>Create an Account</h1>
+
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-5">
-      <ng-container *ngIf="signupForm.get('username') as username">
-        <app-form-input [control]="$any(username)" label="Username"></app-form-input>
+      <app-form-input
+        *ngIf="username"
+        [control]="$any(username)"
+        label="Username"
+      ></app-form-input>
+
+      <app-form-input
+        *ngIf="password"
+        [control]="$any(password)"
+        inputType="password"
+        label="Password"
+      ></app-form-input>
+
+      <app-form-input
+        *ngIf="passwordConfirmation"
+        label="Password confirmation"
+        [control]="$any(passwordConfirmation)"
+        inputType="password"
+      ></app-form-input>
+
+      <ng-container *ngIf="password?.touched && passwordConfirmation?.touched">
+        <div
+          *ngIf="signupForm.errors?.['passwordsDontMatch']"
+          class="text-pink-500 text-sm"
+        >
+          Password and Password Confirmation must match
+        </div>
       </ng-container>
-      <ng-container *ngIf="signupForm.get('password') as password">
-        <app-form-input [control]="$any(password)" label="Password"></app-form-input>
-      </ng-container>
-      <ng-container
-        *ngIf="signupForm.get('passwordConfirmation') as passwordConfirmation"
-      >
-        <app-form-input
-          label="Password confirmation"
-          [control]="$any(passwordConfirmation)"
-        ></app-form-input>
-      </ng-container>
+
       <div class="my-5">
         <p-button (onClick)="onSubmit()" label="Sign up!"></p-button>
       </div>
     </form>
   </div>
 </ng-container>
+
 <ng-template #loading>
   <div class="mx-auto">
     <p-progressSpinner></p-progressSpinner>
