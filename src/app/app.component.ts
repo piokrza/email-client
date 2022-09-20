@@ -3,7 +3,8 @@ import { MenuItem } from 'primeng/api';
 import { AuthState } from '@auth/state/auth.state';
 import { takeUntil } from 'rxjs';
 import { MenuService } from '@shared/services/menu.service';
-import { DestroyComponent } from './standalone/components/destroy/destroy.component';
+import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { AuthService } from '@auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +17,16 @@ import { DestroyComponent } from './standalone/components/destroy/destroy.compon
 export class AppComponent extends DestroyComponent implements OnInit {
   menuLinks!: MenuItem[];
 
-  constructor(private authState: AuthState, private menuService: MenuService) {
+  constructor(
+    private authState: AuthState,
+    private menuService: MenuService,
+    private authService: AuthService
+  ) {
     super();
   }
 
   ngOnInit(): void {
+    this.authService.checkAuth().subscribe();
     this.setLinks();
   }
 

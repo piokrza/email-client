@@ -1,8 +1,6 @@
 import { MenuItem } from 'primeng/api';
 import { MenuLinkLabel } from '@shared/enums/menu-link-label.enum';
 
-//TODO: handle active links
-
 export const MenuLinks: MenuItem[] = [
   {
     label: MenuLinkLabel.INBOX,
@@ -11,12 +9,11 @@ export const MenuLinks: MenuItem[] = [
   },
   {
     label: MenuLinkLabel.SIGN_OUT,
-    routerLink: '/signout',
-    routerLinkActiveOptions: 'active',
+    routerLink: '/',
   },
   {
     label: MenuLinkLabel.SIGN_IN,
-    routerLink: '',
+    routerLink: '/signin',
     routerLinkActiveOptions: 'active',
   },
   {

@@ -13,7 +13,7 @@ export class UniqueUsername implements AsyncValidator {
   validate = (
     control: FormControl
   ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
-    return this.authService.usernameAvailable(control).pipe(
+    return this.authService.usernameAvailable(control.value).pipe(
       // if username is available map response to null
       map((res: AvailableUsernameResponse) => null),
       catchError((err): Observable<ValidationErrors> => {

@@ -33,7 +33,7 @@ export class SignupComponent extends DestroyComponent implements OnInit {
   onSubmit(): void {
     if (this.signupForm.invalid) return;
 
-    this.authService.signup(this.signupForm.value).subscribe({
+    this.authService.signUp(this.signupForm.value).subscribe({
       next: () => {},
       error: (err) => {
         if (!err.status) {
