@@ -1,0 +1,10 @@
+@use 'abstracts' as *;
+
+p-menubar {
+  .p-menubar {
+    .p-menuitem-link-active {
+      font-weight: 700;
+      background-color: $gray-light;
+    }
+  }
+}

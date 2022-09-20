@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from '@auth/auth.module';
+import { InboxModule } from '@inbox/inbox.module';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: (): Promise<any> =>
-      import('@auth/auth.module').then(
-        ({ AuthModule }): AuthModule => AuthModule
+      import('@auth/auth.module').then(({ AuthModule }): AuthModule => AuthModule),
+  },
+  {
+    path: 'inbox',
+    loadChildren: (): Promise<any> =>
+      import('@inbox/inbox.module').then(
+        ({ InboxModule }): InboxModule => InboxModule
       ),
   },
 ];

@@ -4,45 +4,58 @@
       <h1>Create an Account</h1>
 
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-6">
+        <!-- username -->
         <app-form-input
           *ngIf="username"
           [control]="$any(username)"
           label="Username"
+          id="username"
         ></app-form-input>
 
+        <!-- password -->
         <app-form-input
           *ngIf="password"
           [control]="$any(password)"
           inputType="password"
           label="Password"
+          id="password"
         ></app-form-input>
 
+        <!-- password confirmation -->
         <app-form-input
           *ngIf="passwordConfirmation"
-          label="Password confirmation"
           [control]="$any(passwordConfirmation)"
+          label="Password confirmation"
           inputType="password"
+          id="passwordConfirmation"
         ></app-form-input>
 
-        <ng-container
-          *ngIf="password?.touched && passwordConfirmation?.touched"
-        >
-          <div
-            *ngIf="signupForm.errors?.['passwordsDontMatch']"
-            class="text-pink-500 text-sm"
-          >
-            Password and Password Confirmation must match
-          </div>
+        <!-- form errors -->
+        <ng-container *ngIf="password?.touched && passwordConfirmation?.touched">
+          <ul class="text-pink-500 text-sm">
+            <li *ngIf="signupForm.errors?.['passwordsDontMatch']">
+              Password and Password Confirmation must match
+            </li>
+            <li *ngIf="signupForm.errors?.['noConnection']">
+              No internet connection detected, failed to sign up
+            </li>
+            <li *ngIf="signupForm.errors?.['unknownError']">Failed to sign up</li>
+          </ul>
         </ng-container>
 
-        <div class="my-5">
+        <div class="my-5 cursor-pointer">
           <p-button
+            [disabled]="signupForm.invalid"
             (onClick)="onSubmit()"
-            styleClass="w-full"
+            styleClass="w-full "
             label="Sign up!"
           ></p-button>
         </div>
       </form>
+
+      <div class="text-center">
+        Have an account? <a routerLink="/signin">Sign in</a>
+      </div>
     </div>
   </div>
 </ng-container>
