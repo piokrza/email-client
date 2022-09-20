@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs';
 import { SigninForm } from '@auth/models/signin-form.model';
 import { AuthService } from '@auth/services/auth.service';
 import { ToastService } from '@shared/services/toast.service';
-import { ToastStatus } from '../../../../shared/enums/toast-status.enum';
+import { ToastStatus } from '@shared/enums/toast-status.enum';
 import { Router } from '@angular/router';
 
 @Component({

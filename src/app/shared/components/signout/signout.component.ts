@@ -19,7 +19,7 @@ export class SignoutComponent implements OnInit {
       next: () => {
         setTimeout(() => {
           this.router.navigateByUrl('/');
-        }, 3000);
+        }, 5000);
       },
     });
   }
