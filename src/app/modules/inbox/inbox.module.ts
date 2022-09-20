@@ -9,6 +9,8 @@ import { EmailShowComponent } from '@inbox/components/email-show/email-show.comp
 import { EmailService } from '@inbox/services/email.service';
 import { InboxApi } from '@inbox/api/inbox.api';
 import { InboxState } from '@inbox/state/inbox.state';
+import { PlaceholderComponent } from './components/placeholder/placeholder.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,9 @@ import { InboxState } from '@inbox/state/inbox.state';
     EmailIndexComponent,
     EmailReplyComponent,
     EmailShowComponent,
+    PlaceholderComponent,
   ],
-  imports: [CommonModule, InboxRoutingModule],
+  imports: [CommonModule, InboxRoutingModule, SharedModule],
   providers: [EmailService, InboxApi, InboxState],
 })
 export class InboxModule {}

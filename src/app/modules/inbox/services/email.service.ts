@@ -17,7 +17,7 @@ export class EmailService {
   loadEmails$(): Observable<Email[]> {
     this.inboxState.setEmailsLoading(true);
 
-    return this.inboxApi.getEmails().pipe(
+    return this.inboxApi.loadEmails().pipe(
       tap((emails: Email[]) => this.inboxState.setEmails(emails)),
       catchError((err) => {
         this.toastService.showInfoMessage(

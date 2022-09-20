@@ -51,6 +51,7 @@ export class AuthService {
       .pipe(
         tap(({ authenticated }) => {
           this.authState.setSignedIn(authenticated);
+          authenticated && this.router.navigateByUrl('/inbox');
         })
       );
   }

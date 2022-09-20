@@ -1,1 +1,13 @@
-<p>email-index works!</p>
+<ng-container *ngIf="emails.length; else emptyList">
+  <ul>
+    <li *ngFor="let email of emails" class="card-shadow radius-sm p-3">
+      <a [routerLink]="email.id" class="block" routerLinkActive="active">
+        <div>{{ email.subject }}</div>
+        <div>{{ email.from }}</div>
+      </a>
+    </li>
+  </ul>
+</ng-container>
+<ng-template #emptyList>
+  <div class="text-center">Email list is empty</div>
+</ng-template>
