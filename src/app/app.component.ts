@@ -13,7 +13,6 @@ import { AuthService } from '@auth/services/auth.service';
 })
 export class AppComponent extends DestroyComponent implements OnInit {
   menuLinks!: MenuItem[];
-  signedIn!: boolean;
 
   constructor(
     private authState: AuthState,
@@ -33,10 +32,8 @@ export class AppComponent extends DestroyComponent implements OnInit {
       .getSignedIn$()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (signedIn: boolean) => {
-          this.menuLinks = this.menuService.setLinks(signedIn);
-          this.signedIn = signedIn;
-        },
+        next: (signedIn: boolean) =>
+          (this.menuLinks = this.menuService.setLinks(signedIn)),
       });
   }
 }
