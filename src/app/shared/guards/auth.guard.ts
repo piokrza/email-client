@@ -17,11 +17,9 @@ export class AuthGuard implements CanLoad {
     return this.authState.getSignedIn$().pipe(
       skipWhile((signedIn) => signedIn === null),
       take(1),
-      tap((authenticated: boolean) => {
-        if (!authenticated) {
-          this.router.navigateByUrl('/');
-        }
-      })
+      tap(
+        (authenticated: boolean) => !authenticated && this.router.navigateByUrl('/')
+      )
     );
   }
 }
