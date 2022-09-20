@@ -8,14 +8,12 @@ import { AuthService } from '@auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-header [links]="this.menuLinks"></app-header>
-    <router-outlet></router-outlet>
-  `,
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent extends DestroyComponent implements OnInit {
   menuLinks!: MenuItem[];
+  signedIn!: boolean;
 
   constructor(
     private authState: AuthState,
@@ -35,8 +33,10 @@ export class AppComponent extends DestroyComponent implements OnInit {
       .getSignedIn$()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (signedIn: boolean) =>
-          (this.menuLinks = this.menuService.setLinks(signedIn)),
+        next: (signedIn: boolean) => {
+          this.menuLinks = this.menuService.setLinks(signedIn);
+          this.signedIn = signedIn;
+        },
       });
   }
 }

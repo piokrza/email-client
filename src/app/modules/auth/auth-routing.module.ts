@@ -3,24 +3,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from '@auth/components/signup/signup.component';
 import { SigninComponent } from '@auth/components/signin/signin.component';
 import { SignoutComponent } from '@shared/components/signout/signout.component';
-import { InboxComponent } from '@auth/components/inbox/inbox.component';
 
 const routes: Routes = [
   {
-    path: 'signup',
-    component: SignupComponent,
+    path: '',
+    redirectTo: 'signin',
+    pathMatch: 'full',
   },
   {
-    path: 'signin',
-    component: SigninComponent,
+    path: 'signup',
+    component: SignupComponent,
   },
   {
     path: 'signout',
     component: SignoutComponent,
   },
   {
-    path: 'inbox',
-    component: InboxComponent,
+    path: 'signin',
+    component: SigninComponent,
   },
 ];
 

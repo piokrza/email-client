@@ -7,6 +7,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from '@shared/shared.module';
 import { AuthService } from '@auth/services/auth.service';
 import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,10 +18,12 @@ import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
     RouterModule,
     HttpClientModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     AuthService,
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [FormInputComponent, HeaderComponent, SignoutComponent],
@@ -20,6 +21,7 @@ import { MenubarModule } from 'primeng/menubar';
     InputTextModule,
     ReactiveFormsModule,
     MenubarModule,
+    ToastModule,
   ],
   exports: [
     ButtonModule,
@@ -29,6 +31,7 @@ import { MenubarModule } from 'primeng/menubar';
     MenubarModule,
     HeaderComponent,
     SignoutComponent,
+    ToastModule,
   ],
 })
 export class SharedModule {}

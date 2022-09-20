@@ -37,9 +37,8 @@ export class SignupComponent extends DestroyComponent implements OnInit {
     if (this.signupForm.invalid) return;
 
     this.authService.signUp(this.signupForm.value).subscribe({
-      next: () => {
-        this.router.navigateByUrl('inbox');
-      },
+      next: () => this.router.navigateByUrl('inbox'),
+
       error: (err) => {
         if (!err.status) {
           this.signupForm.setErrors({ noConnection: true });

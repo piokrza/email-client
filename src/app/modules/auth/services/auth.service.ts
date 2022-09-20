@@ -7,10 +7,16 @@ import { SignupCredentials } from '@auth/models/signup-credentials.model';
 import { SignupResponse } from '@auth/models/signup-response.model';
 import { AuthState } from '@auth/state/auth.state';
 import { CheckAuthResponse } from '@auth/models/check-auth-response.model';
+import { SigninCredencials } from '@auth/models/signin-credentials.model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient, private authState: AuthState) {}
+  constructor(
+    private http: HttpClient,
+    private authState: AuthState,
+    private router: Router
+  ) {}
 
   usernameAvailable(username: string): Observable<AvailableUsernameResponse> {
     return this.http.post<AvailableUsernameResponse>(
@@ -27,6 +33,12 @@ export class AuthService {
       .pipe(tap(() => this.authState.setSignedIn(true)));
   }
 
+  signIn(credentials: SigninCredencials): Observable<any> {
+    return this.http
+      .post(`${environment.BASE_URL}/auth/signin`, credentials)
+      .pipe(tap(() => this.authState.setSignedIn(true)));
+  }
+
   signOut() {
     return this.http
       .post(`${environment.BASE_URL}/auth/signout`, {})
@@ -36,6 +48,11 @@ export class AuthService {
   checkAuth(): Observable<any> {
     return this.http
       .get<CheckAuthResponse>(`${environment.BASE_URL}/auth/signedin`)
-      .pipe(tap(({ authenticated }) => this.authState.setSignedIn(authenticated)));
+      .pipe(
+        tap(({ authenticated }) => {
+          this.authState.setSignedIn(authenticated);
+          authenticated && this.router.navigateByUrl('/inbox');
+        })
+      );
   }
 }

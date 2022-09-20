@@ -9,10 +9,9 @@ import { SignupFormService } from '@auth/services/signup-form.service';
 import { AuthService } from '@auth/services/auth.service';
 import { UniqueUsername } from '@auth/validators/unique-username';
 import { SigninFormService } from '@auth/services/signin-form.service';
-import { InboxComponent } from './components/inbox/inbox.component';
 
 @NgModule({
-  declarations: [SigninComponent, SignupComponent, InboxComponent],
+  declarations: [SigninComponent, SignupComponent],
   imports: [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule],
   providers: [SignupFormService, AuthService, UniqueUsername, SigninFormService],
 })
