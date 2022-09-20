@@ -1,9 +1,9 @@
 <ng-container *ngIf="emails.length; else emptyList">
   <ul>
-    <li *ngFor="let email of emails" class="card-shadow radius-sm p-3">
+    <li *ngFor="let email of emails" class="card-shadow surface-overlay radius p-3">
       <a [routerLink]="email.id" class="block" routerLinkActive="active">
-        <div>{{ email.subject }}</div>
-        <div>{{ email.from }}</div>
+        <div class="font-bold text-xl">{{ email.subject }}</div>
+        <div class="mt-1">{{ email.from }}</div>
       </a>
     </li>
   </ul>

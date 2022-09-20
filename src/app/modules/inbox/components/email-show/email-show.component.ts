@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { EmailService } from '@inbox/services/email.service';
+import { switchMap, takeUntil } from 'rxjs';
+import { InboxApi } from '@inbox/api/inbox.api';
+import { Email } from '@inbox/models/email.model';
 
 @Component({
   selector: 'app-email-show',
@@ -9,16 +11,19 @@ import { EmailService } from '@inbox/services/email.service';
   styleUrls: ['./email-show.component.scss'],
 })
 export class EmailShowComponent extends DestroyComponent implements OnInit {
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private emailService: EmailService
-  ) {
+  email!: Email;
+  constructor(private activatedRoute: ActivatedRoute, private inboxApi: InboxApi) {
     super();
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.pipe().subscribe({
-      next: ({ id }) => this.emailService,
-    });
+    this.activatedRoute.params
+      .pipe(
+        switchMap(({ id }) => this.inboxApi.loadEmailById$(id)),
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
+        next: (email: Email) => (this.email = email),
+      });
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { InboxApi } from '@inbox/api/inbox.api';
 import { InboxState } from '@inbox/state/inbox.state';
 import { Observable, tap, catchError, throwError, finalize } from 'rxjs';
-import { Email } from '@inbox/models/email.model';
+import { EmailSummary } from '@inbox/models/email-summary.model';
 import { ToastService } from '@shared/services/toast.service';
 import { ToastStatus } from '@app/shared/enums/toast-status.enum';
 
@@ -14,11 +14,11 @@ export class EmailService {
     private toastService: ToastService
   ) {}
 
-  loadEmails$(): Observable<Email[]> {
+  loadEmails$(): Observable<EmailSummary[]> {
     this.inboxState.setEmailsLoading(true);
 
-    return this.inboxApi.loadEmails().pipe(
-      tap((emails: Email[]) => this.inboxState.setEmails(emails)),
+    return this.inboxApi.loadEmails$().pipe(
+      tap((emails: EmailSummary[]) => this.inboxState.setEmails(emails)),
       catchError((err) => {
         this.toastService.showInfoMessage(
           ToastStatus.WARN,

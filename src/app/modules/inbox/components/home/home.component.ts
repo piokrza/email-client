@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '@inbox/services/email.service';
 import { InboxState } from '@inbox/state/inbox.state';
-import { Email } from '@inbox/models/email.model';
+import { EmailSummary } from '@inbox/models/email-summary.model';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { switchMap, takeUntil, tap, Observable } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { switchMap, takeUntil, tap, Observable } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent extends DestroyComponent implements OnInit {
-  emails!: Email[] | null;
+  emails!: EmailSummary[] | null;
 
   constructor(private emailService: EmailService, private inboxState: InboxState) {
     super();
@@ -21,9 +21,9 @@ export class HomeComponent extends DestroyComponent implements OnInit {
     this.emailService
       .loadEmails$()
       .pipe(
-        switchMap((): Observable<Email[] | null> => {
+        switchMap((): Observable<EmailSummary[] | null> => {
           return this.inboxState.getEmails$().pipe(
-            tap((emails: Email[] | null) => (this.emails = emails)),
+            tap((emails: EmailSummary[] | null) => (this.emails = emails)),
             takeUntil(this.destroy$)
           );
         })
