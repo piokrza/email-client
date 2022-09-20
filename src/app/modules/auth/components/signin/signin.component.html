@@ -1,1 +1,48 @@
-<h1>sign in works!</h1>
+<ng-container *ngIf="signinForm; else loading">
+  <div class="container-max-w-sm">
+    <div class="px-4 py-3 mt-5">
+      <h1>Sign in</h1>
+
+      <form
+        autocomplete="off"
+        [formGroup]="signinForm"
+        (ngSubmit)="onSubmit()"
+        class="mt-6"
+      >
+        <!-- username -->
+        <app-form-input
+          *ngIf="username"
+          [control]="$any(username)"
+          label="Username"
+          id="username"
+        ></app-form-input>
+
+        <!-- password -->
+        <div class="mt-">
+          <app-form-input
+            *ngIf="password"
+            [control]="$any(password)"
+            inputType="password"
+            label="Password"
+            id="password"
+          ></app-form-input>
+        </div>
+
+        <div class="my-5 cursor-pointer">
+          <p-button
+            [disabled]="signinForm.invalid"
+            (onClick)="onSubmit()"
+            styleClass="w-full "
+            label="Sign in!"
+          ></p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="mx-auto">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>

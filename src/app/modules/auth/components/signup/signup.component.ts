@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { AuthService } from '@auth/services/auth.service';
+import { SignupForm } from '@auth/models/signup-form.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,14 +28,18 @@ export class SignupComponent extends DestroyComponent implements OnInit {
     this.signupFormService
       .form$()
       .pipe(takeUntil(this.destroy$))
-      .subscribe({ next: (form: FormGroup) => (this.signupForm = form) });
+      .subscribe({
+        next: (form: FormGroup<SignupForm>) => (this.signupForm = form),
+      });
   }
 
   onSubmit(): void {
     if (this.signupForm.invalid) return;
 
     this.authService.signUp(this.signupForm.value).subscribe({
-      next: () => {},
+      next: () => {
+        this.router.navigateByUrl('inbox');
+      },
       error: (err) => {
         if (!err.status) {
           this.signupForm.setErrors({ noConnection: true });

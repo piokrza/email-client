@@ -9,7 +9,7 @@ export const MenuLinks: MenuItem[] = [
   },
   {
     label: MenuLinkLabel.SIGN_OUT,
-    routerLink: '/',
+    routerLink: '/signout',
   },
   {
     label: MenuLinkLabel.SIGN_IN,

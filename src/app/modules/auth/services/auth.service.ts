@@ -28,10 +28,9 @@ export class AuthService {
   }
 
   signOut() {
-    return this.http.post(`${environment.BASE_URL}/auth/signout`, {}).pipe(
-      tap(() => console.log('dwa')),
-      tap(() => this.authState.setSignedIn(false))
-    );
+    return this.http
+      .post(`${environment.BASE_URL}/auth/signout`, {})
+      .pipe(tap(() => this.authState.setSignedIn(false)));
   }
 
   checkAuth(): Observable<any> {

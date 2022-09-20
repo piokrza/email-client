@@ -8,10 +8,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupFormService } from '@auth/services/signup-form.service';
 import { AuthService } from '@auth/services/auth.service';
 import { UniqueUsername } from '@auth/validators/unique-username';
+import { SigninFormService } from '@auth/services/signin-form.service';
+import { InboxComponent } from './components/inbox/inbox.component';
 
 @NgModule({
-  declarations: [SigninComponent, SignupComponent],
+  declarations: [SigninComponent, SignupComponent, InboxComponent],
   imports: [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule],
-  providers: [SignupFormService, AuthService, UniqueUsername],
+  providers: [SignupFormService, AuthService, UniqueUsername, SigninFormService],
 })
 export class AuthModule {}
