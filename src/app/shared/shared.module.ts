@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormInputComponent } from '@shared/components/form-input/form-input.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { SignoutComponent } from '@shared/components/signout/signout.component';
+import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
 
 //PrimeNg modules
 import { ButtonModule } from 'primeng/button';
@@ -13,7 +14,12 @@ import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
 
 @NgModule({
-  declarations: [FormInputComponent, HeaderComponent, SignoutComponent],
+  declarations: [
+    FormInputComponent,
+    HeaderComponent,
+    SignoutComponent,
+    NotFoundPageComponent,
+  ],
   imports: [
     CommonModule,
     ButtonModule,
@@ -32,6 +38,7 @@ import { ToastModule } from 'primeng/toast';
     HeaderComponent,
     SignoutComponent,
     ToastModule,
+    NotFoundPageComponent,
   ],
 })
 export class SharedModule {}

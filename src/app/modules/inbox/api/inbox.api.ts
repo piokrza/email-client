@@ -5,7 +5,9 @@ import { EmailSummary } from '@inbox/models/email-summary.model';
 import { Observable } from 'rxjs';
 import { Email } from '@inbox/models/email.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class InboxApi {
   constructor(private http: HttpClient) {}
 
