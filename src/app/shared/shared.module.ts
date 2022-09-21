@@ -4,6 +4,7 @@ import { FormInputComponent } from '@shared/components/form-input/form-input.com
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { SignoutComponent } from '@shared/components/signout/signout.component';
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 
 //PrimeNg modules
 import { ButtonModule } from 'primeng/button';
@@ -12,6 +13,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,7 @@ import { ToastModule } from 'primeng/toast';
     HeaderComponent,
     SignoutComponent,
     NotFoundPageComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +33,9 @@ import { ToastModule } from 'primeng/toast';
     ReactiveFormsModule,
     MenubarModule,
     ToastModule,
+    TableModule,
+    DynamicDialogModule,
+    InputTextareaModule,
   ],
   exports: [
     ButtonModule,
@@ -39,6 +47,10 @@ import { ToastModule } from 'primeng/toast';
     SignoutComponent,
     ToastModule,
     NotFoundPageComponent,
+    TableModule,
+    ModalComponent,
+    DynamicDialogModule,
+    InputTextareaModule,
   ],
 })
 export class SharedModule {}

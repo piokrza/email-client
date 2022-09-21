@@ -1,5 +1,8 @@
 <div class="flex flex-wrap p-4">
-  <div class="min-w-full max-w-18rem">
+  <div class="min-w-full">
+    <div class="mb-4">
+      <p-button (onClick)="onCreateEmail()" label="Create email"></p-button>
+    </div>
     <app-email-index
       *ngIf="emails; else emailIndexLoading"
       [emails]="emails"

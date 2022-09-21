@@ -59,7 +59,7 @@ export class SigninComponent extends DestroyComponent implements OnInit {
           messageDetails!
         );
 
-        this.signinForm.reset();
+        this.password!.reset();
       },
     });
   }

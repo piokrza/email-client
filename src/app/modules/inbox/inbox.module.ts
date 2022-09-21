@@ -11,6 +11,8 @@ import { InboxApi } from '@inbox/api/inbox.api';
 import { InboxState } from '@inbox/state/inbox.state';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { SharedModule } from '@shared/shared.module';
+import { DialogService } from 'primeng/dynamicdialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { SharedModule } from '@shared/shared.module';
     EmailShowComponent,
     PlaceholderComponent,
   ],
-  imports: [CommonModule, InboxRoutingModule, SharedModule],
-  providers: [EmailService, InboxApi, InboxState],
+  imports: [CommonModule, InboxRoutingModule, SharedModule, ReactiveFormsModule],
+  providers: [EmailService, InboxApi, InboxState, DialogService],
 })
 export class InboxModule {}

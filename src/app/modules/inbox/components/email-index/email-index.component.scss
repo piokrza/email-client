@@ -1,5 +1,17 @@
 @use 'abstracts' as *;
 
+a {
+  transition: 0.125s;
+}
+
 a.active {
   background-color: $gray-light;
+}
+
+tr {
+  background-color: transparent !important;
+}
+
+td {
+  padding: 0.75rem 0 !important;
 }
