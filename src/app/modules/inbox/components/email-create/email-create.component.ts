@@ -23,15 +23,11 @@ export class EmailCreateComponent extends DestroyComponent implements OnInit {
       .form$()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (form: FormGroup) => {
-          this.createEmailForm = form;
-          console.log(this.createEmailForm);
-        },
+        next: (form: FormGroup) => (this.createEmailForm = form),
       });
   }
 
   onSubmit(): void {
-    console.log(2);
     this.dialogRef.close(this.createEmailForm.value);
   }
 

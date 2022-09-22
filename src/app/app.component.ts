@@ -12,8 +12,9 @@ import { AuthService } from '@auth/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent extends DestroyComponent implements OnInit {
-  menuLinks!: MenuItem[];
   username$: Observable<string> = this.authState.getUsername$();
+
+  menuLinks!: MenuItem[];
 
   constructor(
     private authState: AuthState,
@@ -33,8 +34,7 @@ export class AppComponent extends DestroyComponent implements OnInit {
       .getSignedIn$()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (signedIn: boolean) =>
-          (this.menuLinks = this.menuService.setLinks(signedIn)),
+        next: (signedIn: boolean) => (this.menuLinks = this.menuService.setLinks(signedIn)),
       });
   }
 }

@@ -4,7 +4,6 @@ import { FormInputComponent } from '@shared/components/form-input/form-input.com
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { SignoutComponent } from '@shared/components/signout/signout.component';
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
-import { ModalComponent } from '@shared/components/modal/modal.component';
 
 //PrimeNg modules
 import { ButtonModule } from 'primeng/button';
@@ -18,13 +17,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
-  declarations: [
-    FormInputComponent,
-    HeaderComponent,
-    SignoutComponent,
-    NotFoundPageComponent,
-    ModalComponent,
-  ],
+  declarations: [FormInputComponent, HeaderComponent, SignoutComponent, NotFoundPageComponent],
   imports: [
     CommonModule,
     ButtonModule,
@@ -48,7 +41,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ToastModule,
     NotFoundPageComponent,
     TableModule,
-    ModalComponent,
     DynamicDialogModule,
     InputTextareaModule,
   ],
