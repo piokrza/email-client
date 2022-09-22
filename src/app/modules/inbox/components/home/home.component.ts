@@ -49,6 +49,7 @@ export class HomeComponent extends DestroyComponent implements OnInit {
 
     dialogRef.onClose.subscribe({
       next: (createEmailFormPayload) =>
+        createEmailFormPayload &&
         this.emailService.sendEmail(createEmailFormPayload).pipe(takeUntil(this.destroy$)).subscribe(),
     });
   }

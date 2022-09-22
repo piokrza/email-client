@@ -29,7 +29,7 @@ export class EmailService {
     );
   }
 
-  sendEmail(createEmailFormPayload: Email): any {
+  sendEmail(createEmailFormPayload: Email): Observable<any> {
     return this.inboxApi.sendEmail(createEmailFormPayload).pipe(
       tap(() =>
         this.toastService.showInfoMessage(ToastStatus.SUCCESS, 'Success!', 'Email sent successfully')

@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export interface CreateEmailForm {
+export interface EmailForm {
   to: FormControl<string>;
   from: FormControl<string>;
   subject: FormControl<string>;

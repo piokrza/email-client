@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { CreateEmailFormService } from '@inbox/services/create-email-form.service';
 import { takeUntil } from 'rxjs';
+import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { EmailFormService } from '@app/modules/inbox/services/email-form.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -13,13 +13,13 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 export class EmailCreateComponent extends DestroyComponent implements OnInit {
   createEmailForm!: FormGroup;
 
-  constructor(private createEmailFormService: CreateEmailFormService, private dialogRef: DynamicDialogRef) {
+  constructor(private emailFormService: EmailFormService, private dialogRef: DynamicDialogRef) {
     super();
   }
 
   ngOnInit(): void {
-    this.createEmailFormService.buildForm();
-    this.createEmailFormService
+    this.emailFormService.buildForm();
+    this.emailFormService
       .form$()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
