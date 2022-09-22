@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Email } from '@inbox/models/email.model';
@@ -11,7 +11,7 @@ import { EmailService } from '@inbox/services/email.service';
   templateUrl: './email-show.component.html',
   styleUrls: ['./email-show.component.scss'],
 })
-export class EmailShowComponent extends DestroyComponent implements OnInit {
+export class EmailShowComponent extends DestroyComponent {
   email!: Email;
 
   constructor(
@@ -23,8 +23,6 @@ export class EmailShowComponent extends DestroyComponent implements OnInit {
 
     this.activatedRoute.data.subscribe(({ email }) => (this.email = email));
   }
-
-  ngOnInit(): void {}
 
   onReplyButtonClick(): void {
     const dialogRef = this.dialogService.open(EmailReplyComponent, {
