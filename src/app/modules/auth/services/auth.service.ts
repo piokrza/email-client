@@ -12,19 +12,12 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private http: HttpClient,
-    private authState: AuthState,
-    private router: Router
-  ) {}
+  constructor(private http: HttpClient, private authState: AuthState, private router: Router) {}
 
   usernameAvailable(username: string): Observable<AvailableUsernameResponse> {
-    return this.http.post<AvailableUsernameResponse>(
-      `${environment.BASE_URL}/auth/username`,
-      {
-        username: username,
-      }
-    );
+    return this.http.post<AvailableUsernameResponse>(`${environment.BASE_URL}/auth/username`, {
+      username: username,
+    });
   }
 
   signUp(credentials: SignupCredentials): Observable<SignupResponse> {
@@ -46,13 +39,10 @@ export class AuthService {
   }
 
   checkAuth(): Observable<any> {
-    return this.http
-      .get<CheckAuthResponse>(`${environment.BASE_URL}/auth/signedin`)
-      .pipe(
-        tap(({ authenticated }) => {
-          this.authState.setSignedIn(authenticated);
-          authenticated && this.router.navigateByUrl('/inbox');
-        })
-      );
+    return this.http.get<CheckAuthResponse>(`${environment.BASE_URL}/auth/signedin`).pipe(
+      tap(({ authenticated }) => this.authState.setSignedIn(authenticated)),
+      tap(({ authenticated }) => authenticated && this.router.navigateByUrl('/inbox')),
+      tap(({ username }) => username && this.authState.setUsername(username))
+    );
   }
 }

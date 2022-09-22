@@ -38,9 +38,13 @@ export class HomeComponent extends DestroyComponent implements OnInit {
   }
 
   onCreateEmail(): void {
-    this.dialogService.open(EmailCreateComponent, {
+    const dialogRef = this.dialogService.open(EmailCreateComponent, {
       header: 'Create email',
       style: { width: '90%', maxWidth: '400px' },
+    });
+
+    dialogRef.onClose.subscribe({
+      next: (formValue) => console.log(formValue),
     });
   }
 }

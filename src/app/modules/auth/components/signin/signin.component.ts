@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent extends DestroyComponent implements OnInit {
-  signinForm!: FormGroup;
+  signinForm!: FormGroup<SigninForm>;
 
   constructor(
     private signinFormService: SigninFormService,
@@ -49,9 +49,7 @@ export class SigninComponent extends DestroyComponent implements OnInit {
 
         if (error.username) {
           messageDetails = 'Username not found';
-        } else if (error.password) {
-          messageDetails = 'Invalid password';
-        }
+        } else messageDetails = 'Invalid password';
 
         this.toastService.showInfoMessage(
           ToastStatus.WARN,

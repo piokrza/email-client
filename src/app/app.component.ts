@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthState } from '@auth/state/auth.state';
-import { takeUntil } from 'rxjs';
+import { takeUntil, Observable } from 'rxjs';
 import { MenuService } from '@shared/services/menu.service';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { AuthService } from '@auth/services/auth.service';
@@ -13,6 +13,7 @@ import { AuthService } from '@auth/services/auth.service';
 })
 export class AppComponent extends DestroyComponent implements OnInit {
   menuLinks!: MenuItem[];
+  username$: Observable<string> = this.authState.getUsername$();
 
   constructor(
     private authState: AuthState,

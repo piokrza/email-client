@@ -13,10 +13,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 export class EmailCreateComponent extends DestroyComponent implements OnInit {
   createEmailForm!: FormGroup;
 
-  constructor(
-    private createEmailFormService: CreateEmailFormService,
-    private dialogRef: DynamicDialogRef
-  ) {
+  constructor(private createEmailFormService: CreateEmailFormService, private dialogRef: DynamicDialogRef) {
     super();
   }
 
@@ -34,7 +31,8 @@ export class EmailCreateComponent extends DestroyComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.createEmailForm.value);
+    console.log(2);
+    this.dialogRef.close(this.createEmailForm.value);
   }
 
   get to() {

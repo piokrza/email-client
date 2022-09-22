@@ -8,4 +8,5 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent {
   @Input() links!: MenuItem[];
+  @Input() username!: string;
 }
