@@ -4,16 +4,11 @@ import { AuthState } from '@auth/state/auth.state';
 import { FormService } from '@shared/services/form.service';
 import { take } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class CreateEmailFormService extends FormService {
-  username!: string;
+@Injectable()
+export class EmailFormService extends FormService {
+  private username!: string;
 
-  constructor(
-    protected override formBuilder: FormBuilder,
-    private authState: AuthState
-  ) {
+  constructor(protected override formBuilder: FormBuilder, private authState: AuthState) {
     super(formBuilder);
     this.authState
       .getUsername$()
