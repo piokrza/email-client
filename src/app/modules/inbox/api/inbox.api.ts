@@ -18,4 +18,8 @@ export class InboxApi {
   loadEmailById$(id: string): Observable<Email> {
     return this.http.get<Email>(`${environment.BASE_URL}/emails/${id}`);
   }
+
+  sendEmail(email: Email): Observable<any> {
+    return this.http.post(`${environment.BASE_URL}/emails`, email);
+  }
 }

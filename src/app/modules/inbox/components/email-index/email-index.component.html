@@ -1,16 +1,21 @@
 <ng-container *ngIf="emails.length; else emptyList">
-  <ul>
-    <li
-      *ngFor="let email of emails"
-      class="card-shadow surface-overlay radius p-3 mb-4"
-    >
-      <a [routerLink]="email.id" class="block" routerLinkActive="active">
-        <div class="font-bold text-xl">{{ email.subject }}</div>
-        <div class="mt-1">{{ email.from }}</div>
-      </a>
-    </li>
-  </ul>
+  <p-table [value]="emails" [paginator]="emails.length > 3" [rows]="3">
+    <ng-template pTemplate="body" let-email>
+      <tr>
+        <td>
+          <a
+            [routerLink]="email.id"
+            class="block w-full p-3 card-shadow surface-overlay radius"
+          >
+            <div class="font-bold text-xl">{{ email.subject }}</div>
+            <div class="mt-1">{{ email.from }}</div>
+          </a>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </ng-container>
+
 <ng-template #emptyList>
-  <div class="text-center">Email list is empty</div>
+  <div class="text-center">Your inbox list is empty</div>
 </ng-template>

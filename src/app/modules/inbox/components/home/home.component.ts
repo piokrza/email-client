@@ -4,6 +4,8 @@ import { InboxState } from '@inbox/state/inbox.state';
 import { EmailSummary } from '@inbox/models/email-summary.model';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { switchMap, takeUntil, tap, Observable } from 'rxjs';
+import { DialogService } from 'primeng/dynamicdialog';
+import { EmailCreateComponent } from '@inbox/components/email-create/email-create.component';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +15,19 @@ import { switchMap, takeUntil, tap, Observable } from 'rxjs';
 export class HomeComponent extends DestroyComponent implements OnInit {
   emails!: EmailSummary[] | null;
 
-  constructor(private emailService: EmailService, private inboxState: InboxState) {
+  constructor(
+    private emailService: EmailService,
+    private inboxState: InboxState,
+    private dialogService: DialogService
+  ) {
     super();
   }
 
   ngOnInit(): void {
+    this.getEmails();
+  }
+
+  getEmails(): void {
     this.emailService
       .loadEmails$()
       .pipe(
@@ -29,5 +39,17 @@ export class HomeComponent extends DestroyComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  onCreateEmail(): void {
+    const dialogRef = this.dialogService.open(EmailCreateComponent, {
+      header: 'Create email',
+      style: { width: '90%', maxWidth: '400px' },
+    });
+
+    dialogRef.onClose.subscribe({
+      next: (createEmailFormPayload) =>
+        this.emailService.sendEmail(createEmailFormPayload).pipe(takeUntil(this.destroy$)).subscribe(),
+    });
   }
 }

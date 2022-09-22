@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthState } from '@auth/state/auth.state';
-import { takeUntil } from 'rxjs';
+import { takeUntil, Observable } from 'rxjs';
 import { MenuService } from '@shared/services/menu.service';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { AuthService } from '@auth/services/auth.service';
@@ -12,6 +12,8 @@ import { AuthService } from '@auth/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent extends DestroyComponent implements OnInit {
+  username$: Observable<string> = this.authState.getUsername$();
+
   menuLinks!: MenuItem[];
 
   constructor(
@@ -32,8 +34,7 @@ export class AppComponent extends DestroyComponent implements OnInit {
       .getSignedIn$()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (signedIn: boolean) =>
-          (this.menuLinks = this.menuService.setLinks(signedIn)),
+        next: (signedIn: boolean) => (this.menuLinks = this.menuService.setLinks(signedIn)),
       });
   }
 }

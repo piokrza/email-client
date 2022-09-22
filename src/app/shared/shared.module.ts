@@ -12,14 +12,12 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
-  declarations: [
-    FormInputComponent,
-    HeaderComponent,
-    SignoutComponent,
-    NotFoundPageComponent,
-  ],
+  declarations: [FormInputComponent, HeaderComponent, SignoutComponent, NotFoundPageComponent],
   imports: [
     CommonModule,
     ButtonModule,
@@ -28,6 +26,9 @@ import { ToastModule } from 'primeng/toast';
     ReactiveFormsModule,
     MenubarModule,
     ToastModule,
+    TableModule,
+    DynamicDialogModule,
+    InputTextareaModule,
   ],
   exports: [
     ButtonModule,
@@ -39,6 +40,9 @@ import { ToastModule } from 'primeng/toast';
     SignoutComponent,
     ToastModule,
     NotFoundPageComponent,
+    TableModule,
+    DynamicDialogModule,
+    InputTextareaModule,
   ],
 })
 export class SharedModule {}
