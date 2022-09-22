@@ -6,6 +6,9 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
 import { switchMap, takeUntil, tap, Observable } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { EmailCreateComponent } from '@inbox/components/email-create/email-create.component';
+import { InboxApi } from '@inbox/api/inbox.api';
+import { ToastService } from '@shared/services/toast.service';
+import { ToastStatus } from '../../../../shared/enums/toast-status.enum';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +21,9 @@ export class HomeComponent extends DestroyComponent implements OnInit {
   constructor(
     private emailService: EmailService,
     private inboxState: InboxState,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private inboxApi: InboxApi,
+    private toastService: ToastService
   ) {
     super();
   }
@@ -43,8 +48,12 @@ export class HomeComponent extends DestroyComponent implements OnInit {
       style: { width: '90%', maxWidth: '400px' },
     });
 
-    dialogRef.onClose.subscribe({
-      next: (formValue) => console.log(formValue),
+    dialogRef.onClose.pipe(takeUntil(this.destroy$)).subscribe({
+      next: (createEmailFormValue) =>
+        this.inboxApi.sendEmail(createEmailFormValue).subscribe({
+          next: () =>
+            this.toastService.showInfoMessage(ToastStatus.SUCCESS, 'Success!', 'Email sent successfully'),
+        }),
     });
   }
 }

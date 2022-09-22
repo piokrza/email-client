@@ -5,6 +5,7 @@ import { Observable, tap, catchError, throwError, finalize } from 'rxjs';
 import { EmailSummary } from '@inbox/models/email-summary.model';
 import { ToastService } from '@shared/services/toast.service';
 import { ToastStatus } from '@app/shared/enums/toast-status.enum';
+import { Email } from '../models/email.model';
 
 @Injectable()
 export class EmailService {
@@ -20,11 +21,7 @@ export class EmailService {
     return this.inboxApi.loadEmails$().pipe(
       tap((emails: EmailSummary[]) => this.inboxState.setEmails(emails)),
       catchError((err) => {
-        this.toastService.showInfoMessage(
-          ToastStatus.WARN,
-          'Error',
-          'Problems with fetching emails'
-        );
+        this.toastService.showInfoMessage(ToastStatus.WARN, 'Error', 'Problems with fetching emails');
         return throwError(err);
       }),
       finalize(() => this.inboxState.setEmailsLoading(false))
