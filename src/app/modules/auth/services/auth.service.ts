@@ -27,18 +27,20 @@ export class AuthService {
   }
 
   signIn(credentials: SigninCredencials): Observable<any> {
-    return this.http
-      .post(`${environment.BASE_URL}/auth/signin`, credentials)
-      .pipe(tap(() => this.authState.setSignedIn(true)));
+    return this.http.post<SigninCredencials>(`${environment.BASE_URL}/auth/signin`, credentials).pipe(
+      tap(({ username }) => username && this.authState.setUsername(username)),
+      tap(() => this.authState.setSignedIn(true))
+    );
   }
 
-  signOut() {
-    return this.http
-      .post(`${environment.BASE_URL}/auth/signout`, {})
-      .pipe(tap(() => this.authState.setSignedIn(false)));
+  signOut(): Observable<Object> {
+    return this.http.post<Object>(`${environment.BASE_URL}/auth/signout`, {}).pipe(
+      tap(() => this.authState.setUsername('')),
+      tap(() => this.authState.setSignedIn(false))
+    );
   }
 
-  checkAuth(): Observable<any> {
+  checkAuth(): Observable<CheckAuthResponse> {
     return this.http.get<CheckAuthResponse>(`${environment.BASE_URL}/auth/signedin`).pipe(
       tap(({ authenticated }) => this.authState.setSignedIn(authenticated)),
       tap(({ authenticated }) => authenticated && this.router.navigateByUrl('/inbox')),
