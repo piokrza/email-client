@@ -1,0 +1,12 @@
+<div class="container-max-w-sm">
+  <div class="px-4 py-3 mt-5">
+    <h1>{{ title }}</h1>
+    <ng-content></ng-content>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="mx-auto">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+</ng-template>
