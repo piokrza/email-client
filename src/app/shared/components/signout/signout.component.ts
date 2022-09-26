@@ -22,11 +22,11 @@ export class SignoutComponent extends DestroyComponent implements OnInit {
     this.authService
       .signOut()
       .pipe(
-        tap(() => {
+        tap(() =>
           setTimeout(() => {
             this.router.navigateByUrl('/');
-          }, 3500);
-        }),
+          }, 3500)
+        ),
         takeUntil(this.destroy$)
       )
       .subscribe();

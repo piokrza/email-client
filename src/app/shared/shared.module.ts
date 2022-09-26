@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormInputComponent } from '@shared/components/form-input/form-input.component';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { SignoutComponent } from '@shared/components/signout/signout.component';
+import { FormContainerComponent } from '@shared/components/form-container/form-container.component';
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
 
 //PrimeNg modules
@@ -17,7 +18,13 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
-  declarations: [FormInputComponent, HeaderComponent, SignoutComponent, NotFoundPageComponent],
+  declarations: [
+    FormInputComponent,
+    HeaderComponent,
+    SignoutComponent,
+    NotFoundPageComponent,
+    FormContainerComponent,
+  ],
   imports: [
     CommonModule,
     ButtonModule,
@@ -43,6 +50,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     TableModule,
     DynamicDialogModule,
     InputTextareaModule,
+    FormContainerComponent,
   ],
 })
 export class SharedModule {}

@@ -8,6 +8,7 @@ import { AuthService } from '@auth/services/auth.service';
 import { ToastService } from '@shared/services/toast.service';
 import { ToastStatus } from '@shared/enums/toast-status.enum';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin',
@@ -44,19 +45,14 @@ export class SigninComponent extends DestroyComponent implements OnInit {
     this.authService.signIn(this.signinForm.value).subscribe({
       next: () => this.router.navigateByUrl('/inbox'),
 
-      error: ({ error }) => {
+      error: ({ error }: HttpErrorResponse) => {
         let messageDetails: string;
 
         if (error.username) {
           messageDetails = 'Username not found';
         } else messageDetails = 'Invalid password';
 
-        this.toastService.showInfoMessage(
-          ToastStatus.WARN,
-          'Incorrect credentials',
-          messageDetails!
-        );
-
+        this.toastService.showInfoMessage(ToastStatus.WARN, 'Incorrect credentials', messageDetails!);
         this.password!.reset();
       },
     });
