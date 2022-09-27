@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self } from '@angular/core';
 import { SigninFormService } from '@auth/services/signin-form.service';
 import { FormGroup } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
@@ -14,12 +14,13 @@ import { HttpErrorResponse } from '@angular/common/http';
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss'],
+  providers: [SigninFormService],
 })
 export class SigninComponent extends DestroyComponent implements OnInit {
   signinForm!: FormGroup<SigninForm>;
 
   constructor(
-    private signinFormService: SigninFormService,
+    @Self() private signinFormService: SigninFormService,
     private authService: AuthService,
     private toastService: ToastService,
     private router: Router

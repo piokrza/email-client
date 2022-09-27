@@ -9,6 +9,7 @@ import { AuthService } from '@auth/services/auth.service';
 import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { APP_CONFIG, APP_SERVICE_CONFIG } from '@app/app-config/app-config.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG },
     AuthService,
     MessageService,
   ],

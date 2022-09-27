@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self } from '@angular/core';
 import { SignupFormService } from '@auth/services/signup-form.service';
 import { takeUntil } from 'rxjs';
 import { FormGroup, AbstractControl } from '@angular/forms';
@@ -11,12 +11,13 @@ import { Router } from '@angular/router';
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
+  providers: [SignupFormService],
 })
 export class SignupComponent extends DestroyComponent implements OnInit {
   signupForm!: FormGroup;
 
   constructor(
-    private signupFormService: SignupFormService,
+    @Self() private signupFormService: SignupFormService,
     private authService: AuthService,
     private router: Router
   ) {
