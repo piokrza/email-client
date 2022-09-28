@@ -57,7 +57,7 @@ export class SigninComponent extends DestroyComponent implements OnInit {
   }
 
   handleSignIn(signInPayload: SigninCredencials): void {
-    this.authService.signIn(signInPayload).subscribe({
+    this.authService.signIn$(signInPayload).subscribe({
       next: () => this.router.navigateByUrl('/inbox'),
 
       error: ({ error }: HttpErrorResponse) => {

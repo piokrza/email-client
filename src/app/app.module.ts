@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from '@shared/shared.module';
 import { AuthService } from '@auth/services/auth.service';
-import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
+import { AuthInterceptor } from '@app/modules/auth/interceptors/auth.interceptor';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from '@app/app-config/app-config.service';

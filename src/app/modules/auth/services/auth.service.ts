@@ -19,13 +19,13 @@ export class AuthService {
     private authState: AuthState
   ) {}
 
-  usernameAvailable(username: string): Observable<AvailableUsernameResponse> {
+  usernameAvailable$(username: string): Observable<AvailableUsernameResponse> {
     return this.http.post<AvailableUsernameResponse>(`${this.appConfig.BASE_URL}/auth/username`, {
       username: username,
     });
   }
 
-  signUp(credentials: SignupCredentials): Observable<SignupResponse> {
+  signUp$(credentials: SignupCredentials): Observable<SignupResponse> {
     this.authState.setAuthLoading(true);
 
     return this.http.post<SignupResponse>(`${this.appConfig.BASE_URL}/auth/signup`, credentials).pipe(
@@ -35,7 +35,7 @@ export class AuthService {
     );
   }
 
-  signIn(credentials: SigninCredencials): Observable<SigninResponse> {
+  signIn$(credentials: SigninCredencials): Observable<SigninResponse> {
     this.authState.setAuthLoading(true);
 
     return this.http.post<SigninCredencials>(`${this.appConfig.BASE_URL}/auth/signin`, credentials).pipe(
@@ -45,14 +45,14 @@ export class AuthService {
     );
   }
 
-  signOut(): Observable<Object> {
+  signOut$(): Observable<Object> {
     return this.http.post<Object>(`${this.appConfig.BASE_URL}/auth/signout`, {}).pipe(
       tap(() => this.authState.setUsername('')),
       tap(() => this.authState.setSignedIn(false))
     );
   }
 
-  checkAuth(): Observable<CheckAuthResponse> {
+  checkAuth$(): Observable<CheckAuthResponse> {
     return this.http.get<CheckAuthResponse>(`${this.appConfig.BASE_URL}/auth/signedin`).pipe(
       tap(({ authenticated }) => this.authState.setSignedIn(authenticated)),
       tap(({ username }) => username && this.authState.setUsername(username))

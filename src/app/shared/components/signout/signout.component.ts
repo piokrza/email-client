@@ -20,7 +20,7 @@ export class SignoutComponent extends DestroyComponent implements OnInit {
 
   redirectToMainPage(): void {
     this.authService
-      .signOut()
+      .signOut$()
       .pipe(
         tap(() =>
           setTimeout(() => {

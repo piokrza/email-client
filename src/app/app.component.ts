@@ -35,7 +35,7 @@ export class AppComponent extends DestroyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.checkAuth().subscribe();
+    this.authService.checkAuth$().subscribe();
     this.setLinks();
   }
 
