@@ -18,6 +18,7 @@
       <div class="my-5 cursor-pointer">
         <p-button
           [disabled]="signinForm.invalid"
+          [icon]="(isAuthLoading$ | async) ? 'pi pi-spinner' : ''"
           (onClick)="onSubmit()"
           styleClass="w-full"
           label="Sign in!"

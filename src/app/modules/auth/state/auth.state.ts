@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthState {
   private signedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private username$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private authLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   setSignedIn(signedIn: boolean): void {
     this.signedIn$.next(signedIn);
@@ -22,5 +23,13 @@ export class AuthState {
 
   getUsername$(): Observable<string> {
     return this.username$.asObservable();
+  }
+
+  setAuthLoading(isLoading: boolean): void {
+    this.authLoading$.next(isLoading);
+  }
+
+  getAuthLoading$(): Observable<boolean> {
+    return this.authLoading$.asObservable();
   }
 }

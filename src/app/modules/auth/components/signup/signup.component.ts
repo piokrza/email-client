@@ -1,11 +1,12 @@
 import { Component, OnInit, Self } from '@angular/core';
 import { SignupFormService } from '@auth/services/signup-form.service';
-import { takeUntil } from 'rxjs';
+import { Observable, takeUntil } from 'rxjs';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { AuthService } from '@auth/services/auth.service';
 import { SignupForm } from '@auth/models/signup-form.model';
 import { Router } from '@angular/router';
+import { AuthState } from '@auth/state/auth.state';
 
 @Component({
   selector: 'app-signup',
@@ -14,12 +15,15 @@ import { Router } from '@angular/router';
   providers: [SignupFormService],
 })
 export class SignupComponent extends DestroyComponent implements OnInit {
+  isAuthLoading$: Observable<boolean> = this.authState.getAuthLoading$();
+
   signupForm!: FormGroup;
 
   constructor(
     @Self() private signupFormService: SignupFormService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private authState: AuthState
   ) {
     super();
   }

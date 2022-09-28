@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
 import { AvailableUsernameResponse } from '@auth/models/available-username-response.model';
 import { SignupCredentials } from '@auth/models/signup-credentials.model';
 import { SignupResponse } from '@auth/models/signup-response.model';
@@ -27,15 +27,21 @@ export class AuthService {
   }
 
   signUp(credentials: SignupCredentials): Observable<SignupResponse> {
-    return this.http
-      .post<SignupResponse>(`${this.appConfig.BASE_URL}/auth/signup`, credentials)
-      .pipe(tap(() => this.authState.setSignedIn(true)));
+    this.authState.setAuthLoading(true);
+
+    return this.http.post<SignupResponse>(`${this.appConfig.BASE_URL}/auth/signup`, credentials).pipe(
+      tap(() => this.authState.setSignedIn(true)),
+      finalize(() => this.authState.setAuthLoading(false))
+    );
   }
 
   signIn(credentials: SigninCredencials): Observable<any> {
+    this.authState.setAuthLoading(true);
+
     return this.http.post<SigninCredencials>(`${this.appConfig.BASE_URL}/auth/signin`, credentials).pipe(
       tap(({ username }) => username && this.authState.setUsername(username)),
-      tap(() => this.authState.setSignedIn(true))
+      tap(() => this.authState.setSignedIn(true)),
+      finalize(() => this.authState.setAuthLoading(false))
     );
   }
 
@@ -49,7 +55,6 @@ export class AuthService {
   checkAuth(): Observable<CheckAuthResponse> {
     return this.http.get<CheckAuthResponse>(`${this.appConfig.BASE_URL}/auth/signedin`).pipe(
       tap(({ authenticated }) => this.authState.setSignedIn(authenticated)),
-      tap(({ authenticated }) => authenticated && this.router.navigateByUrl('/inbox')),
       tap(({ username }) => username && this.authState.setUsername(username))
     );
   }

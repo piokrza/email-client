@@ -2,13 +2,14 @@ import { Component, OnInit, Self } from '@angular/core';
 import { SigninFormService } from '@auth/services/signin-form.service';
 import { FormGroup } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { takeUntil } from 'rxjs';
+import { Observable, takeUntil } from 'rxjs';
 import { SigninForm } from '@auth/models/signin-form.model';
 import { AuthService } from '@auth/services/auth.service';
 import { ToastService } from '@shared/services/toast.service';
 import { ToastStatus } from '@shared/enums/toast-status.enum';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthState } from '@auth/state/auth.state';
 
 @Component({
   selector: 'app-signin',
@@ -17,11 +18,14 @@ import { HttpErrorResponse } from '@angular/common/http';
   providers: [SigninFormService],
 })
 export class SigninComponent extends DestroyComponent implements OnInit {
+  isAuthLoading$: Observable<boolean> = this.authState.getAuthLoading$();
+
   signinForm!: FormGroup<SigninForm>;
 
   constructor(
     @Self() private signinFormService: SigninFormService,
     private authService: AuthService,
+    private authState: AuthState,
     private toastService: ToastService,
     private router: Router
   ) {
