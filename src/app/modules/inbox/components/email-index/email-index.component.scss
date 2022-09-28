@@ -2,10 +2,10 @@
 
 a {
   transition: 0.125s;
-}
 
-a.active {
-  background-color: $gray-light;
+  &.active {
+    background-color: $gray-light !important;
+  }
 }
 
 tr {
