@@ -1,6 +1,12 @@
 <ng-container *ngIf="signupForm; else loading">
   <app-form-container title="Create an Account">
-    <form *ngIf="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="mt-6">
+    <form
+      *ngIf="signupForm"
+      [formGroup]="signupForm"
+      (ngSubmit)="onSubmit()"
+      (keyup.enter)="onSubmit()"
+      class="mt-6"
+    >
       <app-form-input [control]="$any(username)" label="Username" id="username"></app-form-input>
       <app-form-input
         [control]="$any(password)"

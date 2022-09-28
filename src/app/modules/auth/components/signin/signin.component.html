@@ -1,6 +1,6 @@
 <ng-container *ngIf="signinForm; else loading">
   <app-form-container title="Sign In">
-    <form autocomplete="off" [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="mt-6">
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" class="mt-6">
       <app-form-input
         *ngIf="username"
         [control]="$any(username)"
