@@ -7,9 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export abstract class FormService {
   protected _form!: FormGroup<any>;
-  protected _form$: BehaviorSubject<FormGroup> = new BehaviorSubject<FormGroup>(
-    this._form
-  );
+  protected _form$: BehaviorSubject<FormGroup> = new BehaviorSubject<FormGroup>(this._form);
 
   protected constructor(protected formBuilder: FormBuilder) {}
 

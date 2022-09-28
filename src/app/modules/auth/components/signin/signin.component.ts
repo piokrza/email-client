@@ -10,6 +10,7 @@ import { ToastStatus } from '@shared/enums/toast-status.enum';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthState } from '@auth/state/auth.state';
+import { SigninCredencials } from '@auth/models/signin-credentials.model';
 
 @Component({
   selector: 'app-signin',
@@ -47,7 +48,16 @@ export class SigninComponent extends DestroyComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authService.signIn(this.signinForm.value).subscribe({
+    const signInPayload: SigninCredencials = {
+      username: this.signinForm.value.username!,
+      password: this.signinForm.value.password!,
+    };
+
+    this.handleSignIn(signInPayload);
+  }
+
+  handleSignIn(signInPayload: SigninCredencials): void {
+    this.authService.signIn(signInPayload).subscribe({
       next: () => this.router.navigateByUrl('/inbox'),
 
       error: ({ error }: HttpErrorResponse) => {

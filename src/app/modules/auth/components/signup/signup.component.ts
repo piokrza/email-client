@@ -7,6 +7,8 @@ import { AuthService } from '@auth/services/auth.service';
 import { SignupForm } from '@auth/models/signup-form.model';
 import { Router } from '@angular/router';
 import { AuthState } from '@auth/state/auth.state';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SignupCredentials } from '@auth/models/signup-credentials.model';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +19,7 @@ import { AuthState } from '@auth/state/auth.state';
 export class SignupComponent extends DestroyComponent implements OnInit {
   isAuthLoading$: Observable<boolean> = this.authState.getAuthLoading$();
 
-  signupForm!: FormGroup;
+  signupForm!: FormGroup<SignupForm>;
 
   constructor(
     @Self() private signupFormService: SignupFormService,
@@ -29,6 +31,10 @@ export class SignupComponent extends DestroyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm(): void {
     this.signupFormService.buildForm();
     this.signupFormService
       .form$()
@@ -41,10 +47,20 @@ export class SignupComponent extends DestroyComponent implements OnInit {
   onSubmit(): void {
     if (this.signupForm.invalid) return;
 
-    this.authService.signUp(this.signupForm.value).subscribe({
+    const signUpPayload: SignupCredentials = {
+      username: this.signupForm.value.username!,
+      password: this.signupForm.value.password!,
+      passwordConfirmation: this.signupForm.value.passwordConfirmation!,
+    };
+
+    this.handleSignup(signUpPayload);
+  }
+
+  handleSignup(signUpPayload: SignupCredentials): void {
+    this.authService.signUp(signUpPayload).subscribe({
       next: () => this.router.navigateByUrl('inbox'),
 
-      error: (err) => {
+      error: (err: HttpErrorResponse) => {
         if (!err.status) {
           this.signupForm.setErrors({ noConnection: true });
         } else {

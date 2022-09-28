@@ -7,17 +7,16 @@ import { SignupResponse } from '@auth/models/signup-response.model';
 import { AuthState } from '@auth/state/auth.state';
 import { CheckAuthResponse } from '@auth/models/check-auth-response.model';
 import { SigninCredencials } from '@auth/models/signin-credentials.model';
-import { Router } from '@angular/router';
 import { APP_SERVICE_CONFIG } from '@app/app-config/app-config.service';
 import { AppConfig } from '@app/app-config/app-config.model';
+import { SigninResponse } from '@auth/models/signin-response.model';
 
 @Injectable()
 export class AuthService {
   constructor(
     @Inject(APP_SERVICE_CONFIG) private appConfig: AppConfig,
     private http: HttpClient,
-    private authState: AuthState,
-    private router: Router
+    private authState: AuthState
   ) {}
 
   usernameAvailable(username: string): Observable<AvailableUsernameResponse> {
@@ -31,16 +30,17 @@ export class AuthService {
 
     return this.http.post<SignupResponse>(`${this.appConfig.BASE_URL}/auth/signup`, credentials).pipe(
       tap(() => this.authState.setSignedIn(true)),
+      tap(({ username }) => username && this.authState.setUsername(username)),
       finalize(() => this.authState.setAuthLoading(false))
     );
   }
 
-  signIn(credentials: SigninCredencials): Observable<any> {
+  signIn(credentials: SigninCredencials): Observable<SigninResponse> {
     this.authState.setAuthLoading(true);
 
     return this.http.post<SigninCredencials>(`${this.appConfig.BASE_URL}/auth/signin`, credentials).pipe(
-      tap(({ username }) => username && this.authState.setUsername(username)),
       tap(() => this.authState.setSignedIn(true)),
+      tap(({ username }) => username && this.authState.setUsername(username)),
       finalize(() => this.authState.setAuthLoading(false))
     );
   }
