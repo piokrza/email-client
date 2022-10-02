@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AsyncValidator, FormControl, ValidationErrors } from '@angular/forms';
 import { map, Observable, catchError, of } from 'rxjs';
@@ -16,8 +17,8 @@ export class UniqueUsername implements AsyncValidator {
     return this.authService.usernameAvailable$(control.value).pipe(
       // if username is available map response to null
       map((res: AvailableUsernameResponse) => null),
-      catchError((err): Observable<ValidationErrors> => {
-        if (err.error.username) {
+      catchError(({ error }: HttpErrorResponse): Observable<ValidationErrors> => {
+        if (error.username) {
           return of({ nonUniqueUsername: true });
         }
 

@@ -22,10 +22,8 @@ export class AuthGuard implements CanLoad, CanActivate {
   canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.authService.checkAuth$().pipe(
       take(1),
-      map(({ authenticated }: CheckAuthResponse) => {
-        authenticated && this.router.navigateByUrl('/inbox');
-        return !authenticated;
-      })
+      tap(({ authenticated }: CheckAuthResponse) => authenticated && this.router.navigateByUrl('/inbox')),
+      map(({ authenticated }: CheckAuthResponse) => !authenticated)
     );
   }
 }

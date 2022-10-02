@@ -1,6 +1,7 @@
+import { CreateEmailForm } from '@inbox/models/create-email-form.model';
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 
 @Component({
@@ -9,7 +10,7 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
   styleUrls: ['./email-reply.component.scss'],
 })
 export class EmailReplyComponent extends DestroyComponent implements OnInit {
-  emailForm!: FormGroup;
+  emailForm!: FormGroup<CreateEmailForm>;
   emailDetails = this.dialogConfig.data;
 
   constructor(
@@ -32,24 +33,24 @@ export class EmailReplyComponent extends DestroyComponent implements OnInit {
     return this.formBuilder.group({
       from: { value: this.emailDetails?.to, disabled: true },
       to: this.emailDetails?.from,
-      subject: `RE: ${this.emailDetails?.subject}`,
+      subject: `RE: ${this.emailDetails?.subject!}`,
       text: `\n------- ${this.emailDetails?.from} wrote:\n> ${this.emailDetails?.text}`,
     });
   }
 
   get from() {
-    return this.emailForm.get('from');
+    return this.emailForm.get('from') as FormControl;
   }
 
   get to() {
-    return this.emailForm.get('to');
+    return this.emailForm.get('to') as FormControl;
   }
 
   get subject() {
-    return this.emailForm.get('subject');
+    return this.emailForm.get('subject') as FormControl;
   }
 
   get text() {
-    return this.emailForm.get('text');
+    return this.emailForm.get('text') as FormControl;
   }
 }

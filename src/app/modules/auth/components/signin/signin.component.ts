@@ -1,6 +1,6 @@
 import { Component, OnInit, Self } from '@angular/core';
 import { SigninFormService } from '@auth/services/signin-form.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Observable, takeUntil } from 'rxjs';
 import { SigninForm } from '@auth/models/signin-form.model';
@@ -74,10 +74,10 @@ export class SigninComponent extends DestroyComponent implements OnInit {
   }
 
   get username() {
-    return this.signinForm.get('username');
+    return this.signinForm.get('username') as FormControl;
   }
 
   get password() {
-    return this.signinForm.get('password');
+    return this.signinForm.get('password') as FormControl;
   }
 }

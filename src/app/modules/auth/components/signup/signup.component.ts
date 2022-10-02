@@ -1,7 +1,7 @@
 import { Component, OnInit, Self } from '@angular/core';
 import { SignupFormService } from '@auth/services/signup-form.service';
 import { Observable, takeUntil } from 'rxjs';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { AuthService } from '@auth/services/auth.service';
 import { SignupForm } from '@auth/models/signup-form.model';
@@ -70,15 +70,15 @@ export class SignupComponent extends DestroyComponent implements OnInit {
     });
   }
 
-  get username(): AbstractControl | null {
-    return this.signupForm.get('username');
+  get username() {
+    return this.signupForm.get('username') as FormControl;
   }
 
-  get password(): AbstractControl | null {
-    return this.signupForm.get('password');
+  get password() {
+    return this.signupForm.get('password') as FormControl;
   }
 
-  get passwordConfirmation(): AbstractControl | null {
-    return this.signupForm.get('passwordConfirmation');
+  get passwordConfirmation() {
+    return this.signupForm.get('passwordConfirmation') as FormControl;
   }
 }

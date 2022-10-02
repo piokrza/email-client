@@ -1,15 +1,10 @@
 <ng-container *ngIf="signinForm; else loading">
   <app-form-container title="Sign In">
     <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" (keyup.enter)="onSubmit()" class="mt-6">
-      <app-form-input
-        *ngIf="username"
-        [control]="$any(username)"
-        label="Username"
-        id="username"
-      ></app-form-input>
+      <app-form-input *ngIf="username" [control]="username" label="Username" id="username"></app-form-input>
       <app-form-input
         *ngIf="password"
-        [control]="$any(password)"
+        [control]="password"
         inputType="password"
         label="Password"
         id="password"
@@ -18,7 +13,7 @@
       <div class="my-5 cursor-pointer">
         <p-button
           [disabled]="signinForm.invalid"
-          [icon]="(isAuthLoading$ | async) ? 'pi pi-spinner' : ''"
+          [icon]="(isAuthLoading$ | async) ? 'pi pi-spin pi-spinner' : ''"
           (onClick)="onSubmit()"
           styleClass="w-full"
           label="Sign in!"

@@ -7,10 +7,11 @@ import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@auth/services/auth.service';
 import { UniqueUsername } from '@auth/validators/unique-username';
+import { MatchPassword } from '@auth/validators/match-password';
 
 @NgModule({
   declarations: [SigninComponent, SignupComponent],
   imports: [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule],
-  providers: [AuthService, UniqueUsername],
+  providers: [AuthService, UniqueUsername, MatchPassword],
 })
 export class AuthModule {}

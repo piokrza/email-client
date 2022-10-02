@@ -7,15 +7,15 @@
       (keyup.enter)="onSubmit()"
       class="mt-6"
     >
-      <app-form-input [control]="$any(username)" label="Username" id="username"></app-form-input>
+      <app-form-input [control]="username" label="Username" id="username"></app-form-input>
       <app-form-input
-        [control]="$any(password)"
+        [control]="password"
         inputType="password"
         label="Password"
         id="password"
       ></app-form-input>
       <app-form-input
-        [control]="$any(passwordConfirmation)"
+        [control]="passwordConfirmation"
         label="Password confirmation"
         inputType="password"
         id="passwordConfirmation"
@@ -36,7 +36,7 @@
       <div class="my-5 cursor-pointer">
         <p-button
           [disabled]="signupForm.invalid"
-          [icon]="(isAuthLoading$ | async) ? 'pi pi-spinner' : ''"
+          [icon]="(isAuthLoading$ | async) ? 'pi pi-spin pi-spinner' : ''"
           (onClick)="onSubmit()"
           styleClass="w-full"
           label="Sign up!"
