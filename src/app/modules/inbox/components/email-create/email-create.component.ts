@@ -2,9 +2,9 @@ import { takeUntil } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, Self } from '@angular/core';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { EmailFormService } from '@app/modules/inbox/services/email-form.service';
+import { EmailFormService } from '@inbox/services/email-form.service';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { CreateEmailForm } from '@inbox/models/create-email-form.model';
+import { EmailForm } from '@inbox/models/email-form.model';
 
 @Component({
   selector: 'app-email-create',
@@ -13,7 +13,7 @@ import { CreateEmailForm } from '@inbox/models/create-email-form.model';
   providers: [EmailFormService],
 })
 export class EmailCreateComponent extends DestroyComponent implements OnInit {
-  createEmailForm!: FormGroup<CreateEmailForm>;
+  createEmailForm!: FormGroup<EmailForm>;
 
   constructor(@Self() private emailFormService: EmailFormService, private dialogRef: DynamicDialogRef) {
     super();
@@ -25,7 +25,7 @@ export class EmailCreateComponent extends DestroyComponent implements OnInit {
       .form$()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (form: FormGroup<CreateEmailForm>) => (this.createEmailForm = form),
+        next: (form: FormGroup<EmailForm>) => (this.createEmailForm = form),
       });
   }
 

@@ -14,9 +14,7 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     path: 'inbox',
     loadChildren: (): Promise<any> =>
-      import('@inbox/inbox.module').then(
-        ({ InboxModule }): InboxModule => InboxModule
-      ),
+      import('@inbox/inbox.module').then(({ InboxModule }): InboxModule => InboxModule),
   },
 ];
 

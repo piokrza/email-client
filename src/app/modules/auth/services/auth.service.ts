@@ -8,7 +8,7 @@ import { AuthState } from '@auth/state/auth.state';
 import { CheckAuthResponse } from '@auth/models/check-auth-response.model';
 import { SigninCredencials } from '@auth/models/signin-credentials.model';
 import { APP_SERVICE_CONFIG } from '@app/app-config/app-config.service';
-import { AppConfig } from '@app/app-config/app-config.model';
+import { AppConfig } from '@shared/models/app-config.model';
 import { SigninResponse } from '@auth/models/signin-response.model';
 
 @Injectable()

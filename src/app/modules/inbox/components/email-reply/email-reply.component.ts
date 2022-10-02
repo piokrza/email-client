@@ -1,4 +1,4 @@
-import { CreateEmailForm } from '@inbox/models/create-email-form.model';
+import { EmailForm } from '@inbox/models/email-form.model';
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -10,7 +10,7 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
   styleUrls: ['./email-reply.component.scss'],
 })
 export class EmailReplyComponent extends DestroyComponent implements OnInit {
-  emailForm!: FormGroup<CreateEmailForm>;
+  emailForm!: FormGroup<EmailForm>;
   emailDetails = this.dialogConfig.data;
 
   constructor(

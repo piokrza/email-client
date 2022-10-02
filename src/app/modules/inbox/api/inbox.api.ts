@@ -4,11 +4,9 @@ import { EmailSummary } from '@inbox/models/email-summary.model';
 import { Observable } from 'rxjs';
 import { Email } from '@inbox/models/email.model';
 import { APP_SERVICE_CONFIG } from '@app/app-config/app-config.service';
-import { AppConfig } from '@app/app-config/app-config.model';
+import { AppConfig } from '@shared/models/app-config.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class InboxApi {
   constructor(@Inject(APP_SERVICE_CONFIG) private appConfig: AppConfig, private http: HttpClient) {}
 
