@@ -70,15 +70,15 @@ export class SignupComponent extends DestroyComponent implements OnInit {
     });
   }
 
-  get username() {
-    return this.signupForm.get('username') as FormControl;
+  get username(): FormControl<string> {
+    return this.signupForm.get('username') as FormControl<string>;
   }
 
-  get password() {
-    return this.signupForm.get('password') as FormControl;
+  get password(): FormControl<string> {
+    return this.signupForm.get('password') as FormControl<string>;
   }
 
-  get passwordConfirmation() {
-    return this.signupForm.get('passwordConfirmation') as FormControl;
+  get passwordConfirmation(): FormControl<string> {
+    return this.signupForm.get('passwordConfirmation') as FormControl<string>;
   }
 }

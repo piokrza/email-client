@@ -1,5 +1,6 @@
+import { takeUntil } from 'rxjs';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
 import { Email } from '@inbox/models/email.model';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -21,7 +22,9 @@ export class EmailShowComponent extends DestroyComponent {
   ) {
     super();
 
-    this.activatedRoute.data.subscribe(({ email }) => (this.email = email));
+    this.activatedRoute.data
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({ next: ({ email }: Data): void => (this.email = email) });
   }
 
   onReplyButtonClick(): void {
@@ -32,8 +35,9 @@ export class EmailShowComponent extends DestroyComponent {
     });
 
     dialogRef.onClose.subscribe({
-      next: (replyEmailFormPayload: Email) =>
-        replyEmailFormPayload && this.emailService.sendEmail(replyEmailFormPayload).subscribe(),
+      next: (replyEmailFormPayload: Email): void => {
+        replyEmailFormPayload && this.emailService.sendEmail(replyEmailFormPayload).subscribe();
+      },
     });
   }
 }

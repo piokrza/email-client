@@ -15,7 +15,7 @@ export class ToastService {
       detail,
     });
 
-    setTimeout(() => {
+    setTimeout((): void => {
       this.messageService.clear();
     }, 5000);
   }

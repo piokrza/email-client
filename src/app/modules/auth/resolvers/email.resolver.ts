@@ -4,9 +4,7 @@ import { InboxApi } from '@inbox/api/inbox.api';
 import { Email } from '@inbox/models/email.model';
 import { Observable, catchError, EMPTY } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class EmailResolver implements Resolve<Email> {
   constructor(private inboxApi: InboxApi, private router: Router) {}
 
@@ -14,7 +12,7 @@ export class EmailResolver implements Resolve<Email> {
     const { id } = route.params;
 
     return this.inboxApi.loadEmailById$(id).pipe(
-      catchError(() => {
+      catchError((): Observable<never> => {
         this.router.navigateByUrl('/inbox/not-found');
         return EMPTY;
       })

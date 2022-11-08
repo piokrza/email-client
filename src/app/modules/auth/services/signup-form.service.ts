@@ -6,12 +6,8 @@ import { UniqueUsername } from '@auth/validators/unique-username';
 
 @Injectable()
 export class SignupFormService extends FormService {
-  constructor(
-    protected override formBuilder: FormBuilder,
-    private matchPassword: MatchPassword,
-    private uniqueUsername: UniqueUsername
-  ) {
-    super(formBuilder);
+  constructor(private matchPassword: MatchPassword, private uniqueUsername: UniqueUsername) {
+    super();
   }
 
   get config(): any {
@@ -28,26 +24,14 @@ export class SignupFormService extends FormService {
       ],
       password: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(20),
-          this.matchPassword.validate,
-        ],
+        [Validators.required, Validators.minLength(4), Validators.maxLength(20), this.matchPassword.validate],
       ],
       passwordConfirmation: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(20),
-          this.matchPassword.validate,
-        ],
+        [Validators.required, Validators.minLength(4), Validators.maxLength(20), this.matchPassword.validate],
       ],
     };
   }
 
-  override get customValidators(): any {
-    return { validators: [this.matchPassword.validate] };
-  }
+  override customValidators: Object = { validators: [this.matchPassword.validate] };
 }

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '@inbox/components/home/home.component';
 import { PlaceholderComponent } from '@inbox/components/placeholder/placeholder.component';
 import { EmailShowComponent } from '@inbox/components/email-show/email-show.component';
-import { EmailResolver } from '@app/modules/auth/resolvers/email.resolver';
+import { EmailResolver } from '@auth/resolvers/email.resolver';
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
 
 const routes: Routes = [

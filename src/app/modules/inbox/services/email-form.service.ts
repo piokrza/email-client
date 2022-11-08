@@ -8,13 +8,13 @@ import { take } from 'rxjs';
 export class EmailFormService extends FormService {
   private username!: string;
 
-  constructor(protected override formBuilder: FormBuilder, private authState: AuthState) {
-    super(formBuilder);
+  constructor(private authState: AuthState) {
+    super();
     this.authState
       .getUsername$()
       .pipe(take(1))
       .subscribe({
-        next: (username: string) => (this.username = username),
+        next: (username: string): string => (this.username = username),
       });
   }
 

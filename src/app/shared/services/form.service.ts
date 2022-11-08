@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -6,19 +6,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export abstract class FormService {
+  private fb = inject(FormBuilder);
+
   protected _form!: FormGroup<any>;
-  protected _form$: BehaviorSubject<FormGroup> = new BehaviorSubject<FormGroup>(this._form);
-
-  protected constructor(protected formBuilder: FormBuilder) {}
-
-  protected get customValidators(): any {
-    return {};
-  }
+  protected _form$: BehaviorSubject<FormGroup<any>> = new BehaviorSubject<FormGroup<any>>(this._form);
+  protected customValidators: Object = {};
 
   abstract get config(): any;
 
   buildForm(): void {
-    this._form = this.formBuilder.group(this.config, this.customValidators);
+    this._form = this.fb.group(this.config, this.customValidators);
     this._form$?.next(this._form);
   }
 
