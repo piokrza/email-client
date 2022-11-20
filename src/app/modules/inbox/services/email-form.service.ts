@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { AuthState } from '@auth/state/auth.state';
 import { FormService } from '@shared/services/form.service';
 import { take } from 'rxjs';

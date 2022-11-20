@@ -21,6 +21,7 @@
     "lib": ["es2020", "dom"],
     "paths": {
       "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/_core/*"],
       "@auth/*": ["src/app/modules/auth/*"],
       "@inbox/*": ["src/app/modules/inbox/*"],
       "@shared/*": ["src/app/modules/shared/*"],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { MatchPassword } from '@auth/validators/match-password';
 import { FormService } from '@shared/services/form.service';
 import { UniqueUsername } from '@auth/validators/unique-username';

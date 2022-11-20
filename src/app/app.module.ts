@@ -9,7 +9,7 @@ import { AuthService } from '@auth/services/auth.service';
 import { AuthInterceptor } from '@app/modules/auth/interceptors/auth.interceptor';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { APP_CONFIG, APP_SERVICE_CONFIG } from '@app/app-config/app-config.service';
+import { APP_CONFIG, APP_SERVICE_CONFIG } from '@core/app-config/app-config.service';
 
 @NgModule({
   declarations: [AppComponent],
