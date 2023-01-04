@@ -10,16 +10,16 @@ export abstract class FormService {
 
   protected _form!: FormGroup<any>;
   protected _form$: BehaviorSubject<FormGroup<any>> = new BehaviorSubject<FormGroup<any>>(this._form);
-  protected customValidators: Object = {};
 
+  protected customValidators: Object = {};
   abstract get config(): any;
 
-  buildForm(): void {
+  public buildForm(): void {
     this._form = this.fb.group(this.config, this.customValidators);
     this._form$?.next(this._form);
   }
 
-  form$(): Observable<FormGroup> {
+  public form$(): Observable<FormGroup> {
     return this._form$.asObservable();
   }
 }
