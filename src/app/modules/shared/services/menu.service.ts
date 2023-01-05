@@ -8,26 +8,7 @@ import { AuthService } from '@auth/services/auth.service';
   providedIn: 'root',
 })
 export class MenuService {
-  constructor(private authService: AuthService) {}
-
-  setLinks(sigendIn: boolean): MenuItem[] {
-    let links: MenuItem[];
-
-    if (sigendIn) {
-      links = MenuLinks.filter(
-        (link: MenuItem) =>
-          link.label === MenuLinkLabel.INBOX || link.label === MenuLinkLabel.SIGN_OUT
-      );
-    } else {
-      links = MenuLinks.filter(
-        (link: MenuItem) =>
-          !(
-            link.label === MenuLinkLabel.INBOX ||
-            link.label === MenuLinkLabel.SIGN_OUT
-          )
-      );
-    }
-
-    return links;
+  setLinks(signedIn: boolean): MenuItem[] {
+    return MenuLinks.filter((link) => link.state!['authenticated'] === signedIn);
   }
 }
