@@ -32,7 +32,16 @@
               "./node_modules/primeflex/primeflex.min.css",
               "./node_modules/primeicons/primeicons.css",
               "./node_modules/primeng/resources/primeng.css",
-              "./node_modules/primeng/resources/themes/tailwind-light/theme.css"
+              {
+                "input": "src/assets/themes/dark.scss",
+                "bundleName": "dark",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/light.scss",
+                "bundleName": "light",
+                "inject": false
+              }
             ],
             "scripts": [],
             "stylePreprocessorOptions": {

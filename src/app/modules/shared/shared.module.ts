@@ -6,6 +6,7 @@ import { SignoutComponent } from '@shared/components/signout/signout.component';
 import { FormContainerComponent } from '@shared/components/form-container/form-container.component';
 import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
 import { PRIMENG_MODULES } from '@shared/constants/primeng-ui.modules';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { PRIMENG_MODULES } from '@shared/constants/primeng-ui.modules';
     NotFoundPageComponent,
     FormContainerComponent,
   ],
-  imports: [CommonModule, ...PRIMENG_MODULES],
+  imports: [CommonModule, ...PRIMENG_MODULES, FormsModule],
   exports: [
     ...PRIMENG_MODULES,
     FormInputComponent,

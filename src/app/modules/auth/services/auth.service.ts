@@ -7,7 +7,7 @@ import { SignupResponse } from '@auth/models/signup-response.model';
 import { AuthState } from '@auth/state/auth.state';
 import { CheckAuthResponse } from '@auth/models/check-auth-response.model';
 import { SigninCredencials } from '@auth/models/signin-credentials.model';
-import { APP_SERVICE_CONFIG } from '@core/app-config/app-config.service';
+import { APP_SERVICE_CONFIG } from '@core/app-config/app-config';
 import { AppConfig } from '@shared/models/app-config.model';
 import { SigninResponse } from '@auth/models/signin-response.model';
 import { ToastService } from '@shared/services/toast.service';

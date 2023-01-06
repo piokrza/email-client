@@ -8,6 +8,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 export const PRIMENG_MODULES: Type<any>[] = [
   ButtonModule,
@@ -19,4 +20,5 @@ export const PRIMENG_MODULES: Type<any>[] = [
   TableModule,
   DynamicDialogModule,
   InputTextareaModule,
+  ToggleButtonModule,
 ];
