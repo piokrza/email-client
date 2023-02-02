@@ -6,16 +6,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export abstract class FormService {
-  private fb = inject(FormBuilder);
-
-  protected _form!: FormGroup<any>;
-  protected _form$: BehaviorSubject<FormGroup<any>> = new BehaviorSubject<FormGroup<any>>(this._form);
+  private _fb: FormBuilder = inject(FormBuilder);
+  private _form!: FormGroup<any>;
+  private _form$: BehaviorSubject<FormGroup<any>> = new BehaviorSubject<FormGroup<any>>(this._form);
 
   protected customValidators: Object = {};
   abstract get config(): any;
 
   public buildForm(): void {
-    this._form = this.fb.group(this.config, this.customValidators);
+    this._form = this._fb.group(this.config, this.customValidators);
     this._form$?.next(this._form);
   }
 

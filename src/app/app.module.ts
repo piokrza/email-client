@@ -12,27 +12,31 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from '@core/app-config/app-config';
 import { AppInitService } from '@core/app-config/app-init.service';
 
+const declarations: any[] = [AppComponent];
+const imports: any[] = [
+  BrowserModule,
+  AppRoutingModule,
+  RouterModule,
+  HttpClientModule,
+  SharedModule,
+  BrowserAnimationsModule,
+];
+const providers: any[] = [
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  { provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG },
+  { provide: APP_INITIALIZER, useFactory: injectThemeLink, deps: [AppInitService], multi: true },
+  AuthService,
+  MessageService,
+];
+
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    HttpClientModule,
-    SharedModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG },
-    { provide: APP_INITIALIZER, useFactory: injectThemeLinkToHead, deps: [AppInitService], multi: true },
-    AuthService,
-    MessageService,
-  ],
+  declarations,
+  imports,
+  providers,
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 
-function injectThemeLinkToHead(appInitService: AppInitService): any {
-  return () => appInitService.injectThemeLinkToHead();
+function injectThemeLink(appInitService: AppInitService): () => Promise<void> {
+  return () => appInitService.injectThemeLink();
 }

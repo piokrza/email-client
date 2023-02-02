@@ -8,7 +8,7 @@ import { lastValueFrom, Observable, of } from 'rxjs';
 export class AppInitService {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
-  public async injectThemeLinkToHead(): Promise<void> {
+  public async injectThemeLink(): Promise<void> {
     return lastValueFrom(this.createThemeLink$()).then((link: HTMLLinkElement): void => {
       this.document.head.appendChild(link);
     });

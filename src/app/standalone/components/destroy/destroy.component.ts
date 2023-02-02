@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-destroy',
   template: '',
-  styles: [''],
   standalone: true,
 })
 export class DestroyComponent implements OnDestroy {

@@ -7,7 +7,6 @@ import { takeUntil, tap } from 'rxjs';
 @Component({
   selector: 'app-signout',
   templateUrl: './signout.component.html',
-  styleUrls: ['./signout.component.scss'],
 })
 export class SignoutComponent extends DestroyComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {

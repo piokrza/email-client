@@ -9,7 +9,6 @@ import { EmailForm } from '@inbox/models/email-form.model';
 @Component({
   selector: 'app-email-create',
   templateUrl: './email-create.component.html',
-  styleUrls: ['./email-create.component.scss'],
   providers: [EmailFormService],
 })
 export class EmailCreateComponent extends DestroyComponent implements OnInit {

@@ -10,13 +10,13 @@ import { NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   template: `
-    <app-header [username]="(username$ | async)!" [links]="this.menuLinks"></app-header>
-    <div class="container-max-w-md">
+    <app-header [username]="(username$ | async)!" [links]="menuLinks"></app-header>
+    <main class="container-max-w-md">
       <router-outlet></router-outlet>
-    </div>
+    </main>
+
     <p-toast position="top-center"></p-toast>
   `,
-  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent extends DestroyComponent implements OnInit {
   username$: Observable<string> = this.authState.getUsername$();
@@ -44,14 +44,12 @@ export class AppComponent extends DestroyComponent implements OnInit {
     this.authService
       .checkAuth$()
       .pipe(
-        switchMap(() => this.authState.getSignedIn$()),
-        tap((signedIn: boolean) => this.setLinks(signedIn)),
+        switchMap((): Observable<boolean> => this.authState.getSignedIn$()),
+        tap((signedIn: boolean): void => {
+          this.menuService.setLinks(signedIn);
+        }),
         takeUntil(this.destroy$)
       )
       .subscribe();
-  }
-
-  setLinks(signedIn: boolean): void {
-    this.menuLinks = this.menuService.setLinks(signedIn);
   }
 }

@@ -7,7 +7,6 @@ import { DestroyComponent } from '@standalone/components/destroy/destroy.compone
 @Component({
   selector: 'app-email-reply',
   templateUrl: './email-reply.component.html',
-  styleUrls: ['./email-reply.component.scss'],
 })
 export class EmailReplyComponent extends DestroyComponent implements OnInit {
   emailForm!: FormGroup<EmailForm>;

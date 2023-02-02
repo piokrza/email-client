@@ -9,9 +9,13 @@ import { AuthService } from '@auth/services/auth.service';
 import { UniqueUsername } from '@auth/validators/unique-username';
 import { MatchPassword } from '@auth/validators/match-password';
 
+const declarations: any[] = [SigninComponent, SignupComponent];
+const imports: any[] = [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule];
+const providers: any[] = [AuthService, UniqueUsername, MatchPassword];
+
 @NgModule({
-  declarations: [SigninComponent, SignupComponent],
-  imports: [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule],
-  providers: [AuthService, UniqueUsername, MatchPassword],
+  declarations,
+  imports,
+  providers,
 })
 export class AuthModule {}

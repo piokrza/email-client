@@ -8,22 +8,26 @@ import { NotFoundPageComponent } from '@shared/components/not-found-page/not-fou
 import { PRIMENG_MODULES } from '@shared/constants/primeng-ui.modules';
 import { FormsModule } from '@angular/forms';
 
+const declarations: any[] = [
+  FormInputComponent,
+  HeaderComponent,
+  SignoutComponent,
+  NotFoundPageComponent,
+  FormContainerComponent,
+];
+const imports: any[] = [CommonModule, ...PRIMENG_MODULES, FormsModule];
+const exports: any[] = [
+  ...PRIMENG_MODULES,
+  FormInputComponent,
+  HeaderComponent,
+  SignoutComponent,
+  NotFoundPageComponent,
+  FormContainerComponent,
+];
+
 @NgModule({
-  declarations: [
-    FormInputComponent,
-    HeaderComponent,
-    SignoutComponent,
-    NotFoundPageComponent,
-    FormContainerComponent,
-  ],
-  imports: [CommonModule, ...PRIMENG_MODULES, FormsModule],
-  exports: [
-    ...PRIMENG_MODULES,
-    FormInputComponent,
-    HeaderComponent,
-    SignoutComponent,
-    NotFoundPageComponent,
-    FormContainerComponent,
-  ],
+  declarations,
+  imports,
+  exports,
 })
 export class SharedModule {}

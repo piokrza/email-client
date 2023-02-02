@@ -15,16 +15,20 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmailResolver } from '@auth/resolvers/email.resolver';
 
+const declarations: any[] = [
+  HomeComponent,
+  EmailCreateComponent,
+  EmailIndexComponent,
+  EmailReplyComponent,
+  EmailShowComponent,
+  PlaceholderComponent,
+];
+const imports: any[] = [CommonModule, InboxRoutingModule, SharedModule, ReactiveFormsModule];
+const providers: any[] = [EmailService, InboxApi, InboxState, DialogService, InboxApi, EmailResolver];
+
 @NgModule({
-  declarations: [
-    HomeComponent,
-    EmailCreateComponent,
-    EmailIndexComponent,
-    EmailReplyComponent,
-    EmailShowComponent,
-    PlaceholderComponent,
-  ],
-  imports: [CommonModule, InboxRoutingModule, SharedModule, ReactiveFormsModule],
-  providers: [EmailService, InboxApi, InboxState, DialogService, InboxApi, EmailResolver],
+  declarations,
+  imports,
+  providers,
 })
 export class InboxModule {}

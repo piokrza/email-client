@@ -10,7 +10,6 @@ import { EmailCreateComponent } from '@inbox/components/email-create/email-creat
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent extends DestroyComponent implements OnInit {
   emails!: EmailSummary[] | null;

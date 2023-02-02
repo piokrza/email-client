@@ -10,7 +10,6 @@ import { EmailService } from '@inbox/services/email.service';
 @Component({
   selector: 'app-email-show',
   templateUrl: './email-show.component.html',
-  styleUrls: ['./email-show.component.scss'],
 })
 export class EmailShowComponent extends DestroyComponent {
   email!: Email;
