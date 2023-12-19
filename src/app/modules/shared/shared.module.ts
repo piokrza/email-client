@@ -1,22 +1,46 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormInputComponent } from '@shared/components/form-input/form-input.component';
-import { HeaderComponent } from '@shared/components/header/header.component';
-import { SignoutComponent } from '@shared/components/signout/signout.component';
-import { FormContainerComponent } from '@shared/components/form-container/form-container.component';
-import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
-import { PRIMENG_MODULES } from '@shared/constants/primeng-ui.modules';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MenubarModule } from 'primeng/menubar';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
-const declarations: any[] = [
+import { FormsModule } from '@angular/forms';
+import {
+  FormContainerComponent,
+  FormInputComponent,
+  HeaderComponent,
+  NotFoundPageComponent,
+  SignoutComponent,
+} from '@shared/components';
+
+const PRIMENG_MODULES = [
+  ButtonModule,
+  ProgressSpinnerModule,
+  InputTextModule,
+  ReactiveFormsModule,
+  MenubarModule,
+  ToastModule,
+  TableModule,
+  DynamicDialogModule,
+  InputTextareaModule,
+  ToggleButtonModule,
+];
+const declarations = [
   FormInputComponent,
   HeaderComponent,
   SignoutComponent,
   NotFoundPageComponent,
   FormContainerComponent,
 ];
-const imports: any[] = [CommonModule, ...PRIMENG_MODULES, FormsModule];
-const exports: any[] = [
+const imports = [CommonModule, ...PRIMENG_MODULES, FormsModule];
+const exports = [
   ...PRIMENG_MODULES,
   FormInputComponent,
   HeaderComponent,

@@ -1,14 +1,12 @@
 import { Component, OnInit, Self } from '@angular/core';
-import { SignupFormService } from '@auth/services/signup-form.service';
 import { Observable, takeUntil } from 'rxjs';
-import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { AuthService } from '@auth/services/auth.service';
-import { SignupForm } from '@auth/models/signup-form.model';
+import { FormGroup, FormControl } from '@angular/forms';
+import { DestroyComponent } from '@standalone/components';
+import { AuthService, SignupFormService } from '@auth/services';
+import { SignupForm, SignupCredentials } from '@auth/models';
 import { Router } from '@angular/router';
-import { AuthState } from '@auth/state/auth.state';
+import { AuthState } from '@auth/state';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SignupCredentials } from '@auth/models/signup-credentials.model';
 
 @Component({
   selector: 'app-signup',
@@ -73,14 +71,14 @@ export class SignupComponent extends DestroyComponent implements OnInit {
   }
 
   get username(): FormControl<string> {
-    return this.signupForm.get('username') as FormControl<string>;
+    return this.signupForm.controls.username;
   }
 
   get password(): FormControl<string> {
-    return this.signupForm.get('password') as FormControl<string>;
+    return this.signupForm.controls.password;
   }
 
   get passwordConfirmation(): FormControl<string> {
-    return this.signupForm.get('passwordConfirmation') as FormControl<string>;
+    return this.signupForm.controls.passwordConfirmation;
   }
 }

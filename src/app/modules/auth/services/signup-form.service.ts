@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { MatchPassword } from '@auth/validators/match-password';
-import { FormService } from '@shared/services/form.service';
-import { UniqueUsername } from '@auth/validators/unique-username';
+import { FormService } from '@shared/services';
+import { UniqueUsername, MatchPassword } from '@auth/validators';
 
 @Injectable()
 export class SignupFormService extends FormService {
@@ -10,7 +9,7 @@ export class SignupFormService extends FormService {
     super();
   }
 
-  get config(): any {
+  get config() {
     return {
       username: [
         '',

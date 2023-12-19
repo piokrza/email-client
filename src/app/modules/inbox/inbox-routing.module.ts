@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from '@inbox/components/home/home.component';
-import { PlaceholderComponent } from '@inbox/components/placeholder/placeholder.component';
-import { EmailShowComponent } from '@inbox/components/email-show/email-show.component';
-import { EmailResolver } from '@auth/resolvers/email.resolver';
-import { NotFoundPageComponent } from '@shared/components/not-found-page/not-found-page.component';
+
+import { EmailResolver } from '@auth/resolvers';
+import { NotFoundPageComponent } from '@shared/components';
+import { EmailShowComponent, HomeComponent, PlaceholderComponent } from '@inbox/components';
 
 const routes: Routes = [
   {

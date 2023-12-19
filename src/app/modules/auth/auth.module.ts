@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninComponent } from '@auth/components/signin/signin.component';
-import { SignupComponent } from '@auth/components/signup/signup.component';
-import { AuthRoutingModule } from '@auth/auth-routing.module';
-import { SharedModule } from '@shared/shared.module';
+
+import { AuthRoutingModule } from '@auth/.';
+import { SharedModule } from '@shared/.';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '@auth/services/auth.service';
-import { UniqueUsername } from '@auth/validators/unique-username';
-import { MatchPassword } from '@auth/validators/match-password';
+import { UniqueUsername, MatchPassword } from '@auth/validators';
+import { SigninComponent, SignupComponent } from '@auth/components';
 
-const declarations: any[] = [SigninComponent, SignupComponent];
-const imports: any[] = [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule];
-const providers: any[] = [AuthService, UniqueUsername, MatchPassword];
+const declarations = [SigninComponent, SignupComponent];
+const imports = [CommonModule, AuthRoutingModule, SharedModule, ReactiveFormsModule];
+const providers = [AuthService, UniqueUsername, MatchPassword];
 
 @NgModule({
   declarations,

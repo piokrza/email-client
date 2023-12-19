@@ -1,8 +1,8 @@
-import { EmailForm } from '@inbox/models/email-form.model';
+import { EmailForm } from '@inbox/models';
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { DestroyComponent } from '@standalone/components';
 
 @Component({
   selector: 'app-email-reply',
@@ -37,19 +37,19 @@ export class EmailReplyComponent extends DestroyComponent implements OnInit {
     });
   }
 
-  get from() {
-    return this.emailForm.get('from') as FormControl;
+  get from(): FormControl<string> {
+    return this.emailForm.controls.from;
   }
 
-  get to() {
-    return this.emailForm.get('to') as FormControl;
+  get to(): FormControl<string> {
+    return this.emailForm.controls.to;
   }
 
-  get subject() {
-    return this.emailForm.get('subject') as FormControl;
+  get subject(): FormControl<string> {
+    return this.emailForm.controls.subject;
   }
 
-  get text() {
-    return this.emailForm.get('text') as FormControl;
+  get text(): FormControl<string> {
+    return this.emailForm.controls.text;
   }
 }

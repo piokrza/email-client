@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EmailSummary } from '@inbox/models/email-summary.model';
+import { EmailSummary } from '@inbox/models';
 
 @Component({
   selector: 'app-email-index',

@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { EmailSummary } from '@inbox/models/email-summary.model';
+import { EmailSummary } from '@inbox/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InboxState {
-  emails$: BehaviorSubject<EmailSummary[] | null> = new BehaviorSubject<
-    EmailSummary[] | null
-  >(null);
-  emailsLoading$: BehaviorSubject<boolean | null> = new BehaviorSubject<
-    boolean | null
-  >(null);
+  emails$: BehaviorSubject<EmailSummary[] | null> = new BehaviorSubject<EmailSummary[] | null>(null);
+  emailsLoading$: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null);
 
   getEmails$(): Observable<EmailSummary[] | null> {
     return this.emails$.asObservable();

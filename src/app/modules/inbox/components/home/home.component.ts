@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EmailService } from '@inbox/services/email.service';
-import { InboxState } from '@inbox/state/inbox.state';
-import { EmailSummary } from '@inbox/models/email-summary.model';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { EmailService } from '@inbox/services';
+import { InboxState } from '@inbox/state';
+import { EmailSummary } from '@inbox/models';
+import { DestroyComponent } from '@standalone/components';
 import { switchMap, takeUntil, tap, Observable } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
-import { EmailCreateComponent } from '@inbox/components/email-create/email-create.component';
+import { EmailCreateComponent } from '@inbox/components';
 
 @Component({
   selector: 'app-home',

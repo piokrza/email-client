@@ -1,16 +1,15 @@
 import { Component, OnInit, Self } from '@angular/core';
-import { SigninFormService } from '@auth/services/signin-form.service';
+import { SigninFormService, AuthService } from '@auth/services';
 import { FormGroup, FormControl } from '@angular/forms';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { DestroyComponent } from '@standalone/components';
 import { Observable, takeUntil } from 'rxjs';
-import { SigninForm } from '@auth/models/signin-form.model';
-import { AuthService } from '@auth/services/auth.service';
-import { ToastService } from '@shared/services/toast.service';
-import { ToastStatus } from '@shared/enums/toast-status.enum';
+import { SigninForm } from '@auth/models';
+import { ToastService } from '@shared/services';
+import { ToastStatus } from '@shared/enums';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthState } from '@auth/state/auth.state';
-import { SigninCredencials } from '@auth/models/signin-credentials.model';
+import { AuthState } from '@auth/state';
+import { SigninCredencials } from '@auth/models';
 
 @Component({
   selector: 'app-signin',
@@ -73,11 +72,11 @@ export class SigninComponent extends DestroyComponent implements OnInit {
     });
   }
 
-  get username() {
-    return this.signinForm.get('username') as FormControl;
+  get username(): FormControl<string> {
+    return this.signinForm.controls.username;
   }
 
-  get password() {
-    return this.signinForm.get('password') as FormControl;
+  get password(): FormControl<string> {
+    return this.signinForm.controls.password;
   }
 }

@@ -1,10 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EmailSummary } from '@inbox/models/email-summary.model';
+import { EmailSummary, Email } from '@inbox/models';
 import { Observable } from 'rxjs';
-import { Email } from '@inbox/models/email.model';
-import { APP_SERVICE_CONFIG } from '@core/app-config/app-config';
-import { AppConfig } from '@shared/models/app-config.model';
+import { APP_SERVICE_CONFIG } from '@core/app-config';
+import { AppConfig } from '@shared/models';
 
 @Injectable()
 export class InboxApi {

@@ -1,5 +1,5 @@
 import { MenuItem } from 'primeng/api';
-import { MenuLinkLabel } from '@shared/enums/menu-link-label.enum';
+import { MenuLinkLabel } from '@shared/enums';
 
 export const MenuLinks: MenuItem[] = [
   {

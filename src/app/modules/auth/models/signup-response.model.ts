@@ -1,7 +1,4 @@
-import { SignupCredentials } from '@auth/models/signup-credentials.model';
-import { SignupKeys } from '@auth/enums/signup-keys.enum';
+import { SignupCredentials } from '@auth/models';
+import { SignupKeys } from '@auth/enums';
 
-export type SignupResponse = Omit<
-  SignupCredentials,
-  SignupKeys.PASSWORD | SignupKeys.PASSWORD_CONFIRMATION
->;
+export type SignupResponse = Omit<SignupCredentials, SignupKeys.PASSWORD | SignupKeys.PASSWORD_CONFIRMATION>;

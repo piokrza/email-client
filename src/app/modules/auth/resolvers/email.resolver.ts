@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { InboxApi } from '@inbox/api/inbox.api';
-import { Email } from '@inbox/models/email.model';
+import { InboxApi } from '@inbox/api';
+import { Email } from '@inbox/models';
 import { Observable, catchError, EMPTY } from 'rxjs';
 
 @Injectable()

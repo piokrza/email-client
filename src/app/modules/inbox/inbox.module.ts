@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InboxRoutingModule } from '@inbox/inbox-routing.module';
-import { HomeComponent } from '@inbox/components/home/home.component';
-import { EmailCreateComponent } from '@inbox/components/email-create/email-create.component';
-import { EmailIndexComponent } from '@inbox/components/email-index/email-index.component';
-import { EmailReplyComponent } from '@inbox/components/email-reply/email-reply.component';
-import { EmailShowComponent } from '@inbox/components/email-show/email-show.component';
-import { EmailService } from '@inbox/services/email.service';
-import { InboxApi } from '@inbox/api/inbox.api';
-import { InboxState } from '@inbox/state/inbox.state';
-import { PlaceholderComponent } from './components/placeholder/placeholder.component';
-import { SharedModule } from '@shared/shared.module';
+import { InboxRoutingModule } from '@inbox/.';
+
+import { EmailService } from '@inbox/services';
+import { InboxApi } from '@inbox/api';
+import { InboxState } from '@inbox/state';
+import { SharedModule } from '@shared/.';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EmailResolver } from '@auth/resolvers/email.resolver';
+import { EmailResolver } from '@auth/resolvers';
+import {
+  HomeComponent,
+  EmailCreateComponent,
+  EmailIndexComponent,
+  EmailReplyComponent,
+  EmailShowComponent,
+  PlaceholderComponent,
+} from '@inbox/components';
 
-const declarations: any[] = [
+const declarations = [
   HomeComponent,
   EmailCreateComponent,
   EmailIndexComponent,
@@ -23,8 +26,8 @@ const declarations: any[] = [
   EmailShowComponent,
   PlaceholderComponent,
 ];
-const imports: any[] = [CommonModule, InboxRoutingModule, SharedModule, ReactiveFormsModule];
-const providers: any[] = [EmailService, InboxApi, InboxState, DialogService, InboxApi, EmailResolver];
+const imports = [CommonModule, InboxRoutingModule, SharedModule, ReactiveFormsModule];
+const providers = [EmailService, InboxApi, InboxState, DialogService, InboxApi, EmailResolver];
 
 @NgModule({
   declarations,

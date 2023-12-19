@@ -4,16 +4,16 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SharedModule } from '@shared/shared.module';
-import { AuthService } from '@auth/services/auth.service';
-import { AuthInterceptor } from '@auth/interceptors/auth.interceptor';
+import { SharedModule } from '@shared/.';
+import { AuthService } from '@auth/services';
+import { AuthInterceptor } from '@auth/interceptors';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { APP_CONFIG, APP_SERVICE_CONFIG } from '@core/app-config/app-config';
+import { APP_CONFIG, APP_SERVICE_CONFIG } from '@core/app-config';
 import { AppInitService } from '@core/app-config/app-init.service';
 
-const declarations: any[] = [AppComponent];
-const imports: any[] = [
+const declarations = [AppComponent];
+const imports = [
   BrowserModule,
   AppRoutingModule,
   RouterModule,
@@ -21,7 +21,7 @@ const imports: any[] = [
   SharedModule,
   BrowserAnimationsModule,
 ];
-const providers: any[] = [
+const providers = [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   { provide: APP_SERVICE_CONFIG, useValue: APP_CONFIG },
   { provide: APP_INITIALIZER, useFactory: injectThemeLink, deps: [AppInitService], multi: true },

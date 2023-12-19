@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { FormService } from '@shared/services/form.service';
+import { FormService } from '@shared/services';
 
 @Injectable()
 export class SigninFormService extends FormService {

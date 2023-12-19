@@ -1,4 +1,4 @@
-import { SignupForm } from '@auth/models/signup-form.model';
+import { SignupForm } from '@auth/models';
 import { Injectable } from '@angular/core';
 import { ValidationErrors, Validator, FormGroup } from '@angular/forms';
 

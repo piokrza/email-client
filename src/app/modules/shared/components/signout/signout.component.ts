@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth/services/auth.service';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
+import { AuthService } from '@auth/services';
+import { DestroyComponent } from '@standalone/components';
 import { takeUntil, tap } from 'rxjs';
 
 @Component({

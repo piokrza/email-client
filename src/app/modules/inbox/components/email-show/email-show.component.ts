@@ -1,11 +1,11 @@
 import { takeUntil } from 'rxjs';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { Email } from '@inbox/models/email.model';
+import { DestroyComponent } from '@standalone/components';
+import { Email } from '@inbox/models';
 import { DialogService } from 'primeng/dynamicdialog';
-import { EmailReplyComponent } from '@inbox/components/email-reply/email-reply.component';
-import { EmailService } from '@inbox/services/email.service';
+import { EmailReplyComponent } from '@inbox/components';
+import { EmailService } from '@inbox/services';
 
 @Component({
   selector: 'app-email-show',

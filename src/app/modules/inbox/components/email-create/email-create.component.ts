@@ -1,10 +1,10 @@
 import { takeUntil } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, Self } from '@angular/core';
-import { DestroyComponent } from '@standalone/components/destroy/destroy.component';
-import { EmailFormService } from '@inbox/services/email-form.service';
+import { DestroyComponent } from '@standalone/components';
+import { EmailFormService } from '@inbox/services';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { EmailForm } from '@inbox/models/email-form.model';
+import { EmailForm } from '@inbox/models';
 
 @Component({
   selector: 'app-email-create',
@@ -32,19 +32,19 @@ export class EmailCreateComponent extends DestroyComponent implements OnInit {
     this.dialogRef.close(this.createEmailForm.value);
   }
 
-  get to() {
-    return this.createEmailForm.get('to') as FormControl;
+  get to(): FormControl<string> {
+    return this.createEmailForm.controls.to;
   }
 
-  get from() {
-    return this.createEmailForm.get('from') as FormControl;
+  get from(): FormControl<string> {
+    return this.createEmailForm.controls.from;
   }
 
-  get subject() {
-    return this.createEmailForm.get('subject') as FormControl;
+  get subject(): FormControl<string> {
+    return this.createEmailForm.controls.subject;
   }
 
-  get text() {
-    return this.createEmailForm.get('text') as FormControl;
+  get text(): FormControl<string> {
+    return this.createEmailForm.controls.text;
   }
 }
